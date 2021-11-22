@@ -41,8 +41,13 @@ class MenuClick extends JFrame{
                     System.out.println("START CHESS");
                 }else{
                     if(x>167 && x<434 && y>415 && y<485){
+                        MenuInstrucoes instruco = new MenuInstrucoes();
+                        instruco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        instruco.setSize(600,600);
+                        instruco.setVisible(true);
+
                         ///Instrucoes;
-                        System.out.println("INSTRUÇÕES");
+
 
 
                     }else{
