@@ -17,7 +17,8 @@ public class Cavalo extends Peca{
         ///Caso tenha clicado em uma casa além do tam maximo que rei pode andar
         ///TODO NOTA, TBM TEM QUE FUNCIONAR COM O VALOR DE -1
         ///Caso clique numa casa ocupada
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        ///Caso clique numa casa ocupada POR UMA PECA SUA
+        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1 && tabuleiro.mapa[xdado][ydado].getPeca().cor==this.cor){
             return 0;
         }
         

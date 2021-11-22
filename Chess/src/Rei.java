@@ -20,16 +20,15 @@ public class Rei extends Peca{
         if(zx >1 || zy>1){
             return 0;
         }
-        ///Caso clique numa casa ocupada
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        ///Caso clique numa casa ocupada POR UMA PECA SUA
+        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1 && tabuleiro.mapa[xdado][ydado].getPeca().cor==this.cor){
             return 0;
         }
 
 
-
+        ///TODO NOTA, talvez colocar tipo return 1 caso a casa esteja vazia a casa e 2 Caso tenha um oponente nela
         return 1;
     }
-
 
 
 
