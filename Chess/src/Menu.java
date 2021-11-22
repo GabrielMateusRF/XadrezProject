@@ -26,7 +26,7 @@ public class Menu {
 
 class MenuClick extends JFrame{
     ///imagem menu
-    ImageIcon menuImagem = new ImageIcon(getClass().getResource("open.png"));
+    ImageIcon menuImagem = new ImageIcon(getClass().getResource("open.gif"));
    ///Criar menu
     JLabel menuInicial = new JLabel(menuImagem);
 
