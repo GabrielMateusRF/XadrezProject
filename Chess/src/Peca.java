@@ -26,6 +26,7 @@ public abstract class Peca {
         this.tipo=tipo;//FUNFAAA
 
     }
+
     
     public int getCor() {
     	return cor;

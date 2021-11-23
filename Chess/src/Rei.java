@@ -1,6 +1,6 @@
 public class Rei extends Peca{
 
-    public int movValido(Tabuleiro tabuleiro,int xdado, int ydado){
+    public int movValido(Posicao[][] mapa,int xdado, int ydado){
     	int zx, zy;
     	zx = x-xdado;
     	zy = y-ydado;
@@ -20,9 +20,9 @@ public class Rei extends Peca{
             return 0;
         }
         //Lugar ocupado
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor
-        	if(tabuleiro.mapa[xdado][ydado].getPeca().getCor()==cor) {
+        	if(mapa[xdado][ydado].getPeca().getCor()==cor) {
         		return 0;
         	}
         	//Ocupado por outra cor(comeu a peca).

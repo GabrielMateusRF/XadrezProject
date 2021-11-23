@@ -16,8 +16,13 @@ import javax.swing.*;
 public class Menu {
 
     public static void main(String[] args) {
+       Tabuleiro tabu= new Tabuleiro();
+       tabu.reset();
+       tabu.tabuleiroTest();
+       tabu.mover();
+        tabu.tabuleiroTest();
         // TODO Auto-generated method stub
-        MenuClick menu = new MenuClick();
+       ///MenuClick menu = new MenuClick();
 
 
     }
