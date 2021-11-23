@@ -16,7 +16,7 @@ import javax.swing.*;
 public class Menu {
 
     public static void main(String[] args) {
-       Tabuleiro tabu= new Tabuleiro();
+       /*Tabuleiro tabu= new Tabuleiro();
        tabu.reset();
        tabu.tabuleiroTest();
        tabu.mover();
@@ -24,9 +24,9 @@ public class Menu {
         tabu.mover();
         tabu.tabuleiroTest();
         tabu.mover();
-        tabu.tabuleiroTest();
+        tabu.tabuleiroTest();*/
         // TODO Auto-generated method stub
-       ///MenuClick menu = new MenuClick();
+       //MenuClick menu = new MenuClick();
 
 
     }
@@ -46,8 +46,11 @@ class MenuClick extends JFrame{
                 int y = a.getY();
                 System.out.println(x + "," + y);
                 if(x>167 && x<434 && y>315 && y<385){
-                    ///Comecar jogo
-                    System.out.println("START CHESS");
+                	Jogo xadrez = new Jogo();
+                	xadrez.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                	xadrez.setSize(600,600);
+                	xadrez.setVisible(true);
+
                 }else{
                     if(x>167 && x<434 && y>415 && y<485){
                         MenuInstrucoes instruco = new MenuInstrucoes();
