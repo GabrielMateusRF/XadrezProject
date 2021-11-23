@@ -21,6 +21,10 @@ public class Menu {
        tabu.tabuleiroTest();
        tabu.mover();
         tabu.tabuleiroTest();
+        tabu.mover();
+        tabu.tabuleiroTest();
+        tabu.mover();
+        tabu.tabuleiroTest();
         // TODO Auto-generated method stub
        ///MenuClick menu = new MenuClick();
 

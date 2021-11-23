@@ -1,9 +1,9 @@
 public class Rei extends Peca{
 
-    public int movValido(Posicao[][] mapa,int xdado, int ydado){
+    public int movValido(Posicao[][] mapa,int xdado, int ydado,int xin, int yin){
     	int zx, zy;
-    	zx = x-xdado;
-    	zy = y-ydado;
+    	zx = xin-xdado;
+    	zy = yin-ydado;
     	if(zx < 0) {
     		zx = zx*(-1);
     	}

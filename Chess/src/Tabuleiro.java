@@ -17,87 +17,222 @@ public class Tabuleiro {
         for(i=0; i<8;i++){
             for(j=0;j<8;j++){
                 mapa[i][j]=new Posicao();
-                if(i==0){
-                    switch (j){///Preta Pecas
-                        case 0:
-                            torre.setPeca(1,j,i,1);///NOTA: TALVEZ ESTEJA AO CONTRÁRIO, CULPA DO LUCCA
+                switch (i){//switch coluna
+                    case 0://Torres
+                        if (j==0){///Torre preta em 01
+                            torre.setPeca(1);///NOTA: TALVEZ ESTEJA AO CONTRÁRIO, CULPA DO LUCCA
                             mapa[i][j].setPeca(torre);
-                            break;
-                        case 1:
-                            cavalo.setPeca(1,j,i,2);
-                            mapa[i][j].setPeca(cavalo);
-                            break;
-                        case 2:
-                            bispo.setPeca(1,j,i,3);
-                            mapa[i][j].setPeca(bispo);
-                            break;
-                        case 3:
-                            rainha.setPeca(1,j,i,4);
-                            mapa[i][j].setPeca(rainha);
-                            break;
-                        case 4:
-                            rei.setPeca(1,j,i,5);
-                            mapa[i][j].setPeca(rei);
-                            break;
-                        case 5:
-                            bispo.setPeca(1,j,i,3);
-                            mapa[i][j].setPeca(bispo);
-                            break;
-                        case 6:
-                            cavalo.setPeca(1,j,i,2);
-                            mapa[i][j].setPeca(cavalo);
-                            break;
-                        case 7:
-                            torre.setPeca(1,j,i,1);
-                            mapa[i][j].setPeca(torre);
-                            break;
+                        }else{
+                            if(j==1){///Peão preto em 02
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
 
-                    }
-                }
-                if(i==1){///Pretas Peoes
-                    peao.setPeca(1,j,i,0);
-                    mapa[i][j].setPeca(peao);
-                }
-                if(i==6){///Brancas Peoes
-                    peao.setPeca(0,j,i,0);
-                    mapa[i][j].setPeca(peao);
-                }
-                if(i==7){///Brancas Pecas
-                    switch (j){
-                        case 0:
-                            torre.setPeca(0,i,j,1);///NOTA: TALVEZ ESTEJA AO CONTRÁRIO, CULPA DO LUCCA
-                            mapa[i][j].setPeca(torre);
-                            break;
-                        case 1:
-                            cavalo.setPeca(0,i,j,2);
-                            mapa[i][j].setPeca(cavalo);
-                            break;
-                        case 2:
-                            bispo.setPeca(0,i,j,3);
-                            mapa[i][j].setPeca(bispo);
-                            break;
-                        case 3:
-                            rainha.setPeca(0,i,j,4);
-                            mapa[i][j].setPeca(rainha);
-                            break;
-                        case 4:
-                            rei.setPeca(0,i,j,5);
-                            mapa[i][j].setPeca(rei);
-                            break;
-                        case 5:
-                            bispo.setPeca(0,i,j,3);
-                            mapa[i][j].setPeca(bispo);
-                            break;
-                        case 6:
-                            cavalo.setPeca(0,i,j,2);
-                            mapa[i][j].setPeca(cavalo);
-                            break;
-                        case 7:
-                            torre.setPeca(0,i,j,1);
-                            mapa[i][j].setPeca(torre);
-                            break;
+                            }else{
+                                if(j==6){///Peao branca em 06
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
 
-                    }
+                                }else{///Torre branca em 07
+                                    if (j==7){
+                                        torre.setPeca(0);
+                                        mapa[i][j].setPeca(torre);
+                                    }else{
+
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 1://Cavalos 1
+                        if (j==0){
+                            cavalo.setPeca(1);
+                            mapa[i][j].setPeca(cavalo);
+                        }else{
+                            if(j==1){
+
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+                                    if (j==7){
+                                        cavalo.setPeca(0);
+                                        mapa[i][j].setPeca(cavalo);
+                                    }else{
+
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case 2:///Bispo
+                        if (j==0){
+                            bispo.setPeca(1);
+                            mapa[i][j].setPeca(bispo);
+                        }else{
+                            if(j==1){
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+
+                                    if (j==7){
+                                        bispo.setPeca(0);
+                                        mapa[i][j].setPeca(bispo);
+                                    }else{
+
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+                    case 3:///Rainha
+                        if (j==0){
+                            rainha.setPeca(1);
+                            mapa[i][j].setPeca(rainha);
+                        }else{
+                            if(j==1){
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+
+                                    if (j==7){
+                                        rainha.setPeca(0);
+                                        mapa[i][j].setPeca(rainha);
+                                    }else{
+
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    case 4:
+                        if (j==0){
+                            rei.setPeca(1);
+                            mapa[i][j].setPeca(rei);
+                        }else{
+                            if(j==1){
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){///Peao branca em 06
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+
+                                    if (j==7){
+                                        rei.setPeca(0);
+                                        mapa[i][j].setPeca(rei);
+                                    }else{
+
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+                    case 5:
+                        if (j==0){
+                            bispo.setPeca(1);
+                            mapa[i][j].setPeca(bispo);
+                        }else{
+                            if(j==1){
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+
+                                    if (j==7){
+                                        bispo.setPeca(0);
+                                        mapa[i][j].setPeca(bispo);
+                                    }else{
+
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+                    case 6:
+                        if (j==0){
+                            cavalo.setPeca(1);
+                            mapa[i][j].setPeca(cavalo);
+                        }else{
+                            if(j==1){
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{
+
+                                    if (j==7){
+                                        cavalo.setPeca(0);
+                                        mapa[i][j].setPeca(cavalo);
+                                    }else{
+
+                                    }
+
+                                }
+                            }
+                        }
+                        break;
+                    case 7:
+                        if (j==0){///Torre preta
+                            torre.setPeca(1);
+                            mapa[i][j].setPeca(torre);
+                        }else{
+                            if(j==1){///Peão preto
+                                peao.setPeca(1);
+                                mapa[i][j].setPeca(peao);
+
+                            }else{
+                                if(j==6){///Peao branca
+                                    peao.setPeca(0);
+                                    mapa[i][j].setPeca(peao);
+
+                                }else{///Torre branca
+
+                                    if (j==7){
+                                        torre.setPeca(0);
+                                        mapa[i][j].setPeca(torre);
+                                    }else{
+
+                                    }
+
+
+                                }
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -105,8 +240,8 @@ public class Tabuleiro {
 
     ///Tabuleiro
     public void tabuleiroTest() {
-        for (i = 0; i < 8; i++) {
-            for (j = 0; j < 8; j++) {
+        for (j = 0; j < 8; j++) {
+            for (i = 0; i < 8; i++) {
                 if (mapa[i][j].getOcupado() == 1) {
                     if (mapa[i][j].getPeca() instanceof Peao) {
                         System.out.printf("|P|");
@@ -154,10 +289,10 @@ public class Tabuleiro {
 
             if (mapa[xin][yin].getPeca() instanceof Peao) {
                 System.out.printf("\n P \n");
-                mov=((Peao) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout);
+                mov=((Peao) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
             } else {
                 if (mapa[xin][yin].getPeca() instanceof Torre) {
-                    System.out.printf("|T|");
+                    mov=((Torre) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                 } else {
                     if (mapa[xin][yin].getPeca() instanceof Cavalo) {
                         System.out.printf("|C|");
@@ -168,7 +303,7 @@ public class Tabuleiro {
                             if (mapa[xin][yin].getPeca() instanceof Rainha) {
                                 System.out.printf("|r|");
                             } else {
-                                mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout);
+                                mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                             }
                         }
                     }
@@ -176,20 +311,31 @@ public class Tabuleiro {
             }
             System.out.printf("\n" + mov + "\n");
 
-            if(mov==1){
-                mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
-                mapa[xin][yin].setOcupado(0);
-                mapa[xout][yout].setOcupado(1);
-                mapa[xout][yout].getPeca().setX(xout);
-                mapa[xout][yout].getPeca().setY(yout);
-            }else{
-                mapa[xout][yout].setPeca(rei);
+            if(mov==1) {
+
+            }
+            switch (mov){
+                case 0:
+                    break;
+                case 1:
+                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                    mapa[xin][yin].setOcupado(0);
+                    mapa[xout][yout].setOcupado(1);
+                    ///Colocar troca de turno
+                    break;
+                case 2:
+                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                    mapa[xin][yin].setOcupado(0);
+                    mapa[xout][yout].setOcupado(1);
+                    ///Adicionar score
+                    ///Colocar troca de turno
+                    break;
             }
 
 
 
         }else{
-            System.out.printf("\n Peça invalida");
+            System.out.printf("\n Peca invalida");
         }
     }
 
