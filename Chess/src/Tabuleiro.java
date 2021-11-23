@@ -20,7 +20,7 @@ public class Tabuleiro {
                 switch (i){//switch coluna
                     case 0://Torres
                         if (j==0){///Torre preta em 01
-                            torre.setPeca(1);///NOTA: TALVEZ ESTEJA AO CONTRÁRIO, CULPA DO LUCCA
+                            torre.setPeca(1);///NOTA: TALVEZ ESTEJA AO CONTR�RIO, CULPA DO LUCCA
                             mapa[i][j].setPeca(torre);
                         }else{
                             if(j==1){///Peão preto em 02
@@ -295,13 +295,13 @@ public class Tabuleiro {
                     mov=((Torre) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                 } else {
                     if (mapa[xin][yin].getPeca() instanceof Cavalo) {
-                        System.out.printf("|C|");
+                    	mov=((Cavalo) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                     } else {
                         if (mapa[xin][yin].getPeca() instanceof Bispo) {
-                            System.out.printf("|B|");
+                        	mov=((Bispo) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                         } else {
                             if (mapa[xin][yin].getPeca() instanceof Rainha) {
-                                System.out.printf("|r|");
+                            	mov=((Rainha) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                             } else {
                                 mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
                             }
