@@ -1,8 +1,8 @@
 public class Cavalo extends Peca{
-    public int movValido(Tabuleiro tabuleiro,int xdado, int ydado){
+    public int movValido(Posicao[][] mapa,int xdado, int ydado, int xin, int yin){
     	int zx, zy;
-    	zx = x-xdado;
-    	zy = y-ydado;
+    	zx = xin-xdado;
+    	zy = yin-ydado;
     	if(zx < 0) {
     		zx = zx*(-1);
     	}
@@ -15,9 +15,9 @@ public class Cavalo extends Peca{
             return 0;
         }
         //Lugar ocupado
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor.
-        	if(tabuleiro.mapa[xdado][ydado].getPeca().getCor()==cor) {
+        	if(mapa[xdado][ydado].getPeca().getCor()==cor) {
         		return 0;
         	}
         	//Ocupado por outra cor(comeu a peca).

@@ -1,9 +1,10 @@
 public class Torre extends Peca{
-    public int movValido(Tabuleiro tabuleiro,int xdado, int ydado){
+    public int movValido(Posicao[][] mapa,int xdado, int ydado, int xin, int yin){
     	int zx, zy, i;
-    	zx = x-xdado;
-    	zy = y-ydado;
+    	zx = xin-xdado;
+    	zy = yin-ydado;
     	if(zx < 0) {
+
     		zx = zx*(-1);
     	}
     	if(zy < 0) {
@@ -18,26 +19,27 @@ public class Torre extends Peca{
         if(zx==0 && zy!=0){
         	for(i=0;i<zy;i++) {
         		//Caminho ocupado.
-                if(tabuleiro.mapa[xdado][y].getOcupado() == 1){
-                	
+				yin++;
+                if(mapa[xdado][yin].getOcupado() == 1){
                 	return 0;
                 }
-                y++;
+
         	}
         }else if(zx!=0 && zy==0) {
+
         	for(i=0;i<zx;i++) {
+				xin++;
         		//Caminho ocupado.
-                if(tabuleiro.mapa[x][ydado].getOcupado() == 1){
-                	
+                if(mapa[xin][ydado].getOcupado() == 1){
                 	return 0;
                 }
-                x++;
+
         	}
         }
         
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor.
-        	if(tabuleiro.mapa[xdado][ydado].getPeca().getCor()==cor) {
+        	if(mapa[xdado][ydado].getPeca().getCor()==cor) {
         		return 0;
         	}
         	//Ocupado por outra cor(comeu a peca).
@@ -45,7 +47,7 @@ public class Torre extends Peca{
         		return 2;
         	}
         }
-        
+		System.out.printf("\n K6 \n");
         //Caso ele clique em casa certa vazia.
         return 1;
     }
