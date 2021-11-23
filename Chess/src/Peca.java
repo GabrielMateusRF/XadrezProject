@@ -26,6 +26,10 @@ public abstract class Peca {
         this.tipo=tipo;//FUNFAAA
 
     }
+    
+    public int getCor() {
+    	return cor;
+    }
 
     ///melhor deixar eles separados pois tme peças que só movem uma ou outra, como a torre
     public void setX (int sx){

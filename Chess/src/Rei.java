@@ -16,20 +16,23 @@ public class Rei extends Peca{
             return 0;
         }
         ///Caso tenha clicado em uma casa além do tam maximo que rei pode andar
-        ///TODO NOTA, TBM TEM QUE FUNCIONAR COM O VALOR DE -1
         if(zx >1 || zy>1){
             return 0;
         }
-        ///Caso clique numa casa ocupada POR UMA PECA SUA
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1 && tabuleiro.mapa[xdado][ydado].getPeca().cor==this.cor){
-            return 0;
+        //Lugar ocupado
+        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        	//Ocupado pela mesma cor
+        	if(tabuleiro.mapa[xdado][ydado].getPeca().getCor()==cor) {
+        		return 0;
+        	}
+        	//Ocupado por outra cor(comeu a peca).
+        	else {
+        		return 2;
+        	}
         }
 
 
-        ///TODO NOTA, talvez colocar tipo return 1 caso a casa esteja vazia a casa e 2 Caso tenha um oponente nela
+        //Caso ele clique em casa certa vazia.
         return 1;
     }
-
-
-
 }
