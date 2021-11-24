@@ -14,7 +14,7 @@ public class Cavalo extends Peca{
         if(zx==0 && zy==0){
             return 0;
         }
-        //Lugar ocupado
+        //Lugar ocupado.
         if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor.
         	if(mapa[xdado][ydado].getPeca().getCor()==cor) {

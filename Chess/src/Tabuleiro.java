@@ -20,7 +20,7 @@ public class Tabuleiro {
                 switch (i){//switch coluna
                     case 0://Torres
                         if (j==0){///Torre preta em 01
-                            torre.setPeca(1);///NOTA: TALVEZ ESTEJA AO CONTRÁRIO, CULPA DO LUCCA
+                            torre.setPeca(1);///NOTA: TALVEZ ESTEJA AO CONTR�RIO, CULPA DO LUCCA
                             mapa[i][j].setPeca(torre);
                         }else{
                             if(j==1){///Peão preto em 02
@@ -272,68 +272,57 @@ public class Tabuleiro {
         }
     }
 
-    public void mover(){
+    public void mover(int xi, int yi, int xo, int yo){
         Scanner input = new Scanner(System.in);
-        int xin, yin, xout, yout;
+        int xin=xi, yin=yi, xout=xo, yout=yo;
         int mov=0;
-        System.out.printf("\n Coloque o X inicial: ");
-        xin=input.nextInt();
-        System.out.printf("\n Coloque o Y inicial: ");
-        yin=input.nextInt();
-
-        if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
-            System.out.printf("\n Coloque o X destino: ");
-            xout=input.nextInt();
-            System.out.printf("\n Coloque o Y destino: ");
-            yout=input.nextInt();
-
-            if (mapa[xin][yin].getPeca() instanceof Peao) {
-                System.out.printf("\n P \n");
-                mov=((Peao) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
-            } else {
-                if (mapa[xin][yin].getPeca() instanceof Torre) {
-                    mov=((Torre) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
-                } else {
-                    if (mapa[xin][yin].getPeca() instanceof Cavalo) {
-                        System.out.printf("|C|");
-                    } else {
-                        if (mapa[xin][yin].getPeca() instanceof Bispo) {
-                            System.out.printf("|B|");
-                        } else {
-                            if (mapa[xin][yin].getPeca() instanceof Rainha) {
-                                System.out.printf("|r|");
-                            } else {
-                                mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
-                            }
-                        }
-                    }
-                }
-            }
-            System.out.printf("\n" + mov + "\n");
-
-            if(mov==1) {
-
-            }
-            switch (mov){
-                case 0:
-                    break;
-                case 1:
-                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
-                    mapa[xin][yin].setOcupado(0);
-                    mapa[xout][yout].setOcupado(1);
-                    ///Colocar troca de turno
-                    break;
-                case 2:
-                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
-                    mapa[xin][yin].setOcupado(0);
-                    mapa[xout][yout].setOcupado(1);
-                    ///Adicionar score
-                    ///Colocar troca de turno
-                    break;
-            }
-
-
-
+            
+            if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
+	
+	            if (mapa[xin][yin].getPeca() instanceof Peao) {
+	                System.out.printf("\n P \n");
+	                mov=((Peao) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	            } else {
+	                if (mapa[xin][yin].getPeca() instanceof Torre) {
+	                    mov=((Torre) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	                } else {
+	                    if (mapa[xin][yin].getPeca() instanceof Cavalo) {
+	                    	mov=((Cavalo) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	                    } else {
+	                        if (mapa[xin][yin].getPeca() instanceof Bispo) {
+	                        	mov=((Bispo) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	                        } else {
+	                            if (mapa[xin][yin].getPeca() instanceof Rainha) {
+	                            	mov=((Rainha) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	                            } else {
+	                                mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	            System.out.printf("\n" + mov + "\n");
+	
+	            if(mov==1) {
+	
+	            }
+	            switch (mov){
+	                case 0:
+	                    break;
+	                case 1:
+	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+	                    mapa[xin][yin].setOcupado(0);
+	                    mapa[xout][yout].setOcupado(1);
+	                    ///Colocar troca de turno
+	                    break;
+	                case 2:
+	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+	                    mapa[xin][yin].setOcupado(0);
+	                    mapa[xout][yout].setOcupado(1);
+	                    ///Adicionar score
+	                    ///Colocar troca de turno
+	                    break;
+	            }
         }else{
             System.out.printf("\n Peca invalida");
         }
