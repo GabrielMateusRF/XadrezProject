@@ -28,11 +28,12 @@ public class Jogo extends JFrame{
 	
 	Graphics g;
 
+
     public Jogo() {
     	tabu.reset();
         tabu.tabuleiroTest();
-        
-        
+
+
         add(tabuleiro);
 
         addMouseListener (new MouseAdapter() {
@@ -45,15 +46,14 @@ public class Jogo extends JFrame{
                 
                 
                 JLabel tabule = new JLabel();
-                
-                ImageIcon img = new ImageIcon(getClass().getResource("open.gif"));
-                
+
+                ImageIcon img = new ImageIcon(getClass().getResource("Torrezinha.png"));
+
                 tabule.setIcon(img);
-                
+                remove(tabuleiro);
                 add(tabule);
-                
-                
-                
+                tabule.setBounds(50,30,100,100);
+                add(tabuleiro);
                 
             	if(scan == 0) {
             		scan=1;

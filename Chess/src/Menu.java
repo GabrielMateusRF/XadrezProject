@@ -43,6 +43,7 @@ class MenuClick extends JFrame{
                 System.out.println(x + "," + y);
                 if(x>167 && x<434 && y>315 && y<385){
                 	//Jogo.
+
                 	Jogo jogo = new Jogo();
                 	jogo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 	jogo.setSize(607,635);
