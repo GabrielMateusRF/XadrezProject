@@ -13,7 +13,6 @@ public abstract class Peca {
     ///Arrumar especificacoes iniciais da peca
     public void setPeca(int scor){
         cor=scor;
-        status=0;
 
     }
 

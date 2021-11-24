@@ -12,11 +12,11 @@ public class Peao extends Peca{
     	
     	
     	//Caso ele tente andar para trás.
-    	if(zy > 0 && cor==0) {
+    	if(zy > 0 && cor==1) {
 
     		return 0;
     	}
-    	else if(zy < 0 && cor==1) {
+    	else if(zy < 0 && cor==0) {
 
     		return 0;
     	}

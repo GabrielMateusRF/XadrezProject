@@ -1,10 +1,14 @@
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -15,24 +19,41 @@ import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 
 public class Jogo extends JFrame{
+	Tabuleiro tabu= new Tabuleiro();
 	///imagem tabuleiro
     ImageIcon tabuleiroImagem = new ImageIcon(getClass().getResource("Tabuleiro.png"));
    ///Criar menu
     JLabel tabuleiro = new JLabel(tabuleiroImagem);
-	int xi, yi, xo, yo, scan=0;
+	int xi, yi, xo, yo, scan=0, x, y;
+	
+	Graphics g;
 
     public Jogo() {
-    	Tabuleiro tabu= new Tabuleiro();
     	tabu.reset();
         tabu.tabuleiroTest();
         
-        add(tabuleiro);
         
+        add(tabuleiro);
+
         addMouseListener (new MouseAdapter() {
             public void mousePressed (MouseEvent a) {//Checa clique do mouse
             	//Pega posicao.
-                int x = a.getX();
-                int y = a.getY();
+                x = a.getX();
+                y = a.getY();
+                
+                
+                
+                
+                JLabel tabule = new JLabel();
+                
+                ImageIcon img = new ImageIcon(getClass().getResource("open.gif"));
+                
+                tabule.setIcon(img);
+                
+                add(tabule);
+                
+                
+                
                 
             	if(scan == 0) {
             		scan=1;
@@ -60,6 +81,7 @@ public class Jogo extends JFrame{
                         tabu.tabuleiroTest();
                     }
                 }
+           
             }
         });
     }
