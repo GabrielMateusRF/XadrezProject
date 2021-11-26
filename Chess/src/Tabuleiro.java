@@ -316,9 +316,6 @@ public class Tabuleiro {
 	            }
 	            System.out.printf("\n" + mov + "\n");
 	
-	            if(mov==1) {
-	
-	            }
 	            switch (mov){
 	                case 0:
 	                    break;
@@ -335,6 +332,13 @@ public class Tabuleiro {
 	                    ///Adicionar score
 	                    ///Colocar troca de turno
 	                    break;
+	            }
+	            if(mov>0) {
+	            	if(turno==0) {
+	            		turno=1;
+	            	}else {
+	            		turno=0;
+	            	}
 	            }
         }else{
             System.out.printf("\n Peca invalida");

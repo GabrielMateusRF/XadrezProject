@@ -17,7 +17,7 @@ public class Bispo extends Peca{
         
         if(zx==zy){
         	if(xdado>=xin && ydado>=yin) {
-	        	for(i=0;i<zy;i++) {
+	        	for(i=0;i<zy-1;i++) {
 	        		//Caminho ocupado.
 					yin++;
 					xin++;
@@ -26,7 +26,7 @@ public class Bispo extends Peca{
 	                }
 	        	}
         	}else if(xdado<=xin && ydado>=yin) {
-        		for(i=0;i<zy;i++) {
+        		for(i=0;i<zy-1;i++) {
 	        		//Caminho ocupado.
 					yin++;
 					xin--;
@@ -35,7 +35,7 @@ public class Bispo extends Peca{
 	                }
 	        	}
         	}else if(xdado<=xin && ydado<=yin) {
-        		for(i=0;i<zy;i++) {
+        		for(i=0;i<zy-1;i++) {
 	        		//Caminho ocupado.
 					yin--;
 					xin--;
@@ -44,7 +44,7 @@ public class Bispo extends Peca{
 	                }
 	        	}
         	}else if(xdado>=xin && ydado<=yin) {
-        		for(i=0;i<zy;i++) {
+        		for(i=0;i<zy-1;i++) {
 	        		//Caminho ocupado.
 					yin--;
 					xin++;

@@ -15,7 +15,6 @@ public abstract class Peca {
         cor=scor;
 
     }
-
     
     public int getCor() {
     	return cor;
@@ -28,5 +27,6 @@ public abstract class Peca {
     public int getStatus() {
         return status;
     }
+    
 
 }
