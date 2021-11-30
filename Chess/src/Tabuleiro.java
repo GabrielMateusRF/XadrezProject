@@ -17,10 +17,11 @@ public class Tabuleiro {
     public Rei rei1 = new Rei();
     public int turno; //0 branco, 1 preto
     int i, j;
+    public XequeTeste testadordeXeque= new XequeTeste();
 
     public void reset(){
         ///Reset turno
-    	turno=1;
+    	turno=0;
     	
         ///Pecas ganhando cor
         peao0.setPeca(0);
@@ -315,7 +316,14 @@ public class Tabuleiro {
 	                }
 	            }
 	            System.out.printf("\n" + mov + "\n");
-	
+
+	            ///testar cheque proprio, dps vamo ter que mudar e não enviar direto pro mov;
+
+
+                if(mov>0) {
+                   /// mov = testadordeXeque.testeXequeproprio(mapa, turno);
+
+                }
 	            switch (mov){
 	                case 0:
 	                    break;
@@ -341,7 +349,7 @@ public class Tabuleiro {
 	            	}
 	            }
         }else{
-            System.out.printf("\n Peca invalida");
+            System.out.println("\n Peca invalida");
         }
     }
 
