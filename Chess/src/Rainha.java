@@ -69,7 +69,9 @@ public class Rainha extends Peca{
 	                	return 0;
 	                }
 	        	}
-	        }
+	        }else{
+				return 0;
+			}
         }else if(xdado<=xin && ydado<=yin) {
         	if(zx==0 && zy!=0){
 	        	for(i=0;i<zy-1;i++) {
@@ -88,8 +90,12 @@ public class Rainha extends Peca{
 	                	return 0;
 	                }
 	        	}
-	        }
-        }
+	        }else{
+				return 0;
+			}
+        }else{
+			return 0;
+		}
         
         if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor.

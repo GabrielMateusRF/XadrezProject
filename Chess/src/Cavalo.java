@@ -22,7 +22,12 @@ public class Cavalo extends Peca{
         	}
         	//Ocupado por outra cor(comeu a peca).
         	else {
-        		return 2;
+				if(zx==1 && zy==2){
+					return 2;
+				}else if(zx==2 && zy==1) {
+					return 2;
+				}
+				return 0;
         	}
         }
         

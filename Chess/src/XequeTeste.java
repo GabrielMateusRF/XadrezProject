@@ -13,10 +13,11 @@ public class XequeTeste {
             for(j=0;j<8;j++) {
                 ///Caso um movimento que tu fizer te coloca em xeque;
                 if (mapa[i][j].getPeca() instanceof Rei && mapa[i][j].getPeca().getCor()==turno){
+                    System.out.printf("\n i: "+ i + " j: " + j+ "\n");
                     for(i2=0; i2<8;i2++){
                         for(j2=0;j2<8;j2++) {
                             if(mapa[i2][j2].getOcupado()==1 && mapa[i2][j2].getPeca().getCor()==inimigo){
-
+                                System.out.printf("\n i2: "+ i2 + " j2: " + j2);
                                 if (mapa[i2][j2].getPeca() instanceof Peao) {
                                     System.out.printf("\n P \n");
                                     System.out.printf("\n K1 \n");
@@ -41,6 +42,7 @@ public class XequeTeste {
                                         if (mapa[i2][j2].getPeca() instanceof Cavalo) {
                                             System.out.printf("\n K3 \n");
                                             val=((Cavalo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
+                                            System.out.printf("\n"+ val +"Cor: "+ mapa[i2][j2].getPeca().getCor() +"\n");
                                         } else {
                                             if (mapa[i2][j2].getPeca() instanceof Bispo) {
                                                 System.out.printf("\n K4 \n");

@@ -63,7 +63,7 @@ public class Jogo extends JFrame{
                         //Peoes pretos = 0 a 7.
                         //Peoes brancos = 8 a 15.
                     	if(tabu.mapa[i][j].getPeca().getCor()==0){
-                    		//remove(Pecas[cpp]);
+
                     		x = (int) (45+(i*62.5));
                     		y = (int) (47+(j*62.5));
                     		
@@ -72,7 +72,7 @@ public class Jogo extends JFrame{
                             (Pecas[cpp]).setBounds(x,y,62,62); 
                             cpp++;
                     	}else {
-                    		//remove(Pecas[cpb]);
+
                     		x = (int) (45+(i*62.5));
                     		y = (int) (47+(j*62.5));
                     		
@@ -264,7 +264,7 @@ public class Jogo extends JFrame{
                                 //Peoes pretos = 0 a 7.
                                 //Peoes brancos = 8 a 15.
                             	if(tabu.mapa[i][j].getPeca().getCor()==0){
-                            		//remove(Pecas[cpp]);
+
                             		x = (int) (45+(i*62.5));
                             		y = (int) (47+(j*62.5));
                             		
@@ -273,7 +273,7 @@ public class Jogo extends JFrame{
                                     (Pecas[cpp]).setBounds(x,y,62,62); 
                                     cpp++;
                             	}else {
-                            		//remove(Pecas[cpb]);
+
                             		x = (int) (45+(i*62.5));
                             		y = (int) (47+(j*62.5));
                             		
