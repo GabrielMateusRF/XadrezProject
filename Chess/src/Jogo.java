@@ -232,6 +232,21 @@ public class Jogo extends JFrame{
                         tabu.tabuleiroTest();
                         tabu.mover(xi, yi, xo, yo);
                         tabu.tabuleiroTest();
+                        
+                        //Quadrado de selecao.
+                        x = (int) (45+(xo*62.5));
+                        y = (int) (45+(yo*62.5));
+                    	add(SelectionP2);
+                        SelectionP2.setBounds(x,y,66,70);
+                        remove(SelectionP1);
+                    }else{
+                    	//Quadrado de selecao.
+                    	x = (int) (45+(xi*62.5));
+                        y = (int) (45+(yi*62.5));
+                    	add(SelectionP1);
+                        SelectionP1.setBounds(x,y,66,70);
+                        remove(SelectionP2);
+                       
                     }
                 }
                 
@@ -381,21 +396,6 @@ public class Jogo extends JFrame{
                            
                         }
                     }
-                }
-                //Quadrado de selecao.
-                if(scan == 1) {
-                	x = (int) (45+(xi*62.5));
-                    y = (int) (45+(yi*62.5));
-                	add(SelectionP1);
-                    SelectionP1.setBounds(x,y,66,70);
-                    remove(SelectionP2);
-                   
-                }else {
-                	x = (int) (45+(xo*62.5));
-                    y = (int) (45+(yo*62.5));
-                	add(SelectionP2);
-                    SelectionP2.setBounds(x,y,66,70);
-                    remove(SelectionP1);
                 }
                 add(tabuleiro);
             }
