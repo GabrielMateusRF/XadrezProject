@@ -50,8 +50,151 @@ public class Jogo extends JFrame{
     	tabu.reset();
         tabu.tabuleiroTest();
         
+        int cpb=8, cpp=0, ctp=16, ctb=18, cbb=20, cbp=22, ccb=26, ccp=24, crb=29, crp=28, cRb=30, cRp=31;
+        
         for(int i=0; i<=31;i++) {
         	Pecas[i] = new JLabel();
+        }
+        
+        for (int j = 0; j < 8; j++) {
+            for (int i = 0; i < 8; i++) {
+                if (tabu.mapa[i][j].getOcupado() == 1) {
+                    if (tabu.mapa[i][j].getPeca() instanceof Peao) {
+                        //Peoes pretos = 0 a 7.
+                        //Peoes brancos = 8 a 15.
+                    	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                    		//remove(Pecas[cpp]);
+                    		x = (int) (45+(i*62.5));
+                    		y = (int) (47+(j*62.5));
+                    		
+                    		(Pecas[cpp]).setIcon(peao1);
+                            add(Pecas[cpp]);
+                            (Pecas[cpp]).setBounds(x,y,62,62); 
+                            cpp++;
+                    	}else {
+                    		//remove(Pecas[cpb]);
+                    		x = (int) (45+(i*62.5));
+                    		y = (int) (47+(j*62.5));
+                    		
+                    		(Pecas[cpb]).setIcon(peao0);
+                            add(Pecas[cpb]);
+                            (Pecas[cpb]).setBounds(x,y,62,62);
+                            cpb++;
+                    	}
+                        
+                    } else {
+                        //Torres pretas = 16 a 17.
+                        //Torres brancas = 18 a 19.
+                        if (tabu.mapa[i][j].getPeca() instanceof Torre) {
+                        	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                        		x = (int) (45+(i*62.5));
+                        		y = (int) (47+(j*62.5));
+                        		
+                        		(Pecas[ctp]).setIcon(torre1);
+                                add(Pecas[ctp]);
+                                (Pecas[ctp]).setBounds(x,y,62,62); 
+                                ctp++;
+                        	}else {
+                        		x = (int) (45+(i*62.5));
+                        		y = (int) (47+(j*62.5));
+                        		
+                        		(Pecas[ctb]).setIcon(torre0);
+                                add(Pecas[ctb]);
+                                (Pecas[ctb]).setBounds(x,y,62,62); 
+                                ctb++;
+                        	}
+                           
+                        } else {
+                            //Cavalos pretos = 24 a 25.
+                            //Cavalos brancos = 26 a 27.
+                            if (tabu.mapa[i][j].getPeca() instanceof Cavalo) {
+                            	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                            		x = (int) (45+(i*62.5));
+                            		y = (int) (47+(j*62.5));
+                            		
+                            		(Pecas[ccp]).setIcon(cavalo1);
+                                    add(Pecas[ccp]);
+                                    (Pecas[ccp]).setBounds(x,y,62,62); 
+                                    ccp++;
+                            	}else {
+                            		x = (int) (45+(i*62.5));
+                            		y = (int) (47+(j*62.5));
+                            		
+                            		(Pecas[ccb]).setIcon(cavalo0);
+                                    add(Pecas[ccb]);
+                                    (Pecas[ccb]).setBounds(x,y,62,62); 
+                                    ccb++;
+                            	}
+                               
+                            } else {
+                                //Bispos pretos = 20 a 21.
+                                //Bispos brancos = 22 a 23.
+                                if (tabu.mapa[i][j].getPeca() instanceof Bispo) {
+                                	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                                		x = (int) (45+(i*62.5));
+                                		y = (int) (47+(j*62.5));
+                                		
+                                		(Pecas[cbp]).setIcon(bispo1);
+                                        add(Pecas[cbp]);
+                                        (Pecas[cbp]).setBounds(x,y,62,62); 
+                                        cbp++;
+                                	}else {
+                                		x = (int) (45+(i*62.5));
+                                		y = (int) (47+(j*62.5));
+                                		
+                                		(Pecas[cbb]).setIcon(bispo0);
+                                        add(Pecas[cbb]);
+                                        (Pecas[cbb]).setBounds(x,y,62,62); 
+                                        cbb++;
+                                	}
+                                    
+                                } else {
+                                    //Rainha preta = 28.
+                                    //Rainha branca = 29.
+                                    if (tabu.mapa[i][j].getPeca() instanceof Rainha) {
+                                    	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                                    		x = (int) (45+(i*62.5));
+                                    		y = (int) (47+(j*62.5));
+                                    		
+                                    		(Pecas[crp]).setIcon(rainha1);
+                                            add(Pecas[crp]);
+                                            (Pecas[crp]).setBounds(x,y,62,62); 
+                                    	}else {
+                                    		x = (int) (45+(i*62.5));
+                                    		y = (int) (47+(j*62.5));
+                                    		
+                                    		(Pecas[crb]).setIcon(rainha0);
+                                            add(Pecas[crb]);
+                                            (Pecas[crb]).setBounds(x,y,62,62); 
+                                    	}
+                                        
+                                    } else {
+                                        //Rei preto = 30.
+                                        //Rei branco = 31.
+                                    	if(tabu.mapa[i][j].getPeca().getCor()==0){
+                                    		x = (int) (45+(i*62.5));
+                                    		y = (int) (47+(j*62.5));
+                                    		
+                                    		(Pecas[cRp]).setIcon(rei1);
+                                            add(Pecas[cRp]);
+                                            (Pecas[cRp]).setBounds(x,y,62,62); 
+                                    	}else {
+                                    		x = (int) (45+(i*62.5));
+                                    		y = (int) (47+(j*62.5));
+                                    		
+                                    		(Pecas[cRb]).setIcon(rei0);
+                                            add(Pecas[cRb]);
+                                            (Pecas[cRb]).setBounds(x,y,62,62); 
+                                    	} 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                   
+                }
+            }
         }
         
         add(tabuleiro);

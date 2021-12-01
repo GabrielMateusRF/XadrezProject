@@ -9,11 +9,8 @@ public class Peao extends Peca{
     		zx = zx*(-1);
     	}
 
-    	
-    	
     	//Caso ele tente andar para trás.
     	if(zy > 0 && cor==1) {
-
     		return 0;
     	}
     	else if(zy < 0 && cor==0) {
@@ -53,17 +50,30 @@ public class Peao extends Peca{
         }
 
         //Caso ele clique em casa na diagonal vazia.
-
         if(zx>=1) {
 
         	return 0;
         }
+        
+        //Caso seja a primeira jogada do peao (pode andar 2 casas).
+		if(yin==1 && zy<=2 && cor==1) {
+			if(mapa[xin][yin+1].getOcupado() == 1) {
+				return 0;
+			}
+			return 1;
+		}else if(yin==6 && zy<=2 && cor==0) {
+			if(mapa[xin][yin-1].getOcupado() == 1) {
+				return 0;
+			}
+			return 1;
+		}
+        
         //Caso ele tente andar mais de uma casa para frente.
         if(zy>1) {
-
         	return 0;
         }
         //Caso ele clique em casa certa(para frente) vazia.
+        
 
 		return 1;
     }
