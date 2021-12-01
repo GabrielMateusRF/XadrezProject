@@ -321,7 +321,7 @@ public class Tabuleiro {
 
 
                 if(mov>0) {
-                   ///mov = testadordeXeque.testeXequeproprio(mapa, turno);
+                   ///mov = testadordeXeque.testeXequeproprio(mapa, turno, mov, xin, yin, xout, yout);
 
                 }
 	            switch (mov){

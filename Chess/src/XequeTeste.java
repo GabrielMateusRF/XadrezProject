@@ -1,7 +1,24 @@
 public class XequeTeste {
     int i, j, i2, j2, val, inimigo;
 
-    public int testeXequeproprio(Posicao[][] mapa, int turno){
+    public int testeXequeproprio(Posicao[][] mapa, int turno, int mov, int xin, int yin, int xout, int yout){
+        switch (mov){
+            case 0:
+                break;
+            case 1:
+                mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                mapa[xin][yin].setOcupado(0);
+                mapa[xout][yout].setOcupado(1);
+                ///Colocar troca de turno
+                break;
+            case 2:
+                mapa[xin][yin].setOcupado(0);
+                mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                mapa[xout][yout].setOcupado(1);
+                ///Adicionar score
+                ///Colocar troca de turno
+                break;
+        }
         val=0;
         if(turno==0){
             inimigo=1;
@@ -51,9 +68,10 @@ public class XequeTeste {
                                                 if (mapa[i2][j2].getPeca() instanceof Rainha) {
                                                     System.out.printf("\n K5 \n");
                                                     val=((Rainha) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                                } else {
-                                                    System.out.printf("\n K6 \n");
-                                                    val=((Rei) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
+                                                }else{
+                                                    if (mapa[i2][j2].getPeca() instanceof Rei) {
+                                                        val=0;
+                                                    }
                                                 }
                                             }
                                         }
