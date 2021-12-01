@@ -209,13 +209,17 @@ public class Jogo extends JFrame{
                 System.out.println(x + "," + y);
                 
             	if(scan == 0) {
-            		scan=1;
+            		
             		//Pega posicoes iniciais.
             		xi = x;
             		yi = y;
             		
                 	xi=(int) ((xi-54)/62.5);
                 	yi=(int) ((yi-80)/62.5);
+            		if(tabu.mapa[xi][yi].getOcupado() == 1 && tabu.mapa[xi][yi].getPeca().getCor()==tabu.turno) {
+            			scan=1;
+            		}
+	            		
             	}else {
             		scan=0;
             		//Pega posicoes finais.
@@ -234,15 +238,15 @@ public class Jogo extends JFrame{
                         tabu.tabuleiroTest();
                         
                         //Quadrado de selecao.
-                        x = (int) (45+(xo*62.5));
-                        y = (int) (45+(yo*62.5));
+                        x = (int) (42+(xo*62.5));
+                        y = (int) (40+(yo*62.5));
                     	add(SelectionP2);
                         SelectionP2.setBounds(x,y,66,70);
                         remove(SelectionP1);
                     }else{
                     	//Quadrado de selecao.
-                    	x = (int) (45+(xi*62.5));
-                        y = (int) (45+(yi*62.5));
+                    	x = (int) (42+(xi*62.5));
+                        y = (int) (40+(yi*62.5));
                     	add(SelectionP1);
                         SelectionP1.setBounds(x,y,66,70);
                         remove(SelectionP2);
