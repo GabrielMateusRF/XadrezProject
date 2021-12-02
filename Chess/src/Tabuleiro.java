@@ -17,6 +17,7 @@ public class Tabuleiro {
     public Rei rei1 = new Rei();
     public int turno; //0 branco, 1 preto
     int i, j;
+    int rbx, rby, rpx, rpy;
     public XequeTeste testadordeXeque= new XequeTeste();
 
     public void reset(){
@@ -133,6 +134,8 @@ public class Tabuleiro {
                     case 4:
                         if (j==0){
                             mapa[i][j].setPeca(rei1);
+                            rpx=i;
+                            rpy=j;
                         }else{
                             if(j==1){
                                 mapa[i][j].setPeca(peao1);
@@ -145,6 +148,8 @@ public class Tabuleiro {
 
                                     if (j==7){
                                         mapa[i][j].setPeca(rei0);
+                                        rbx=i;
+                                        rby=j;
                                     }else{
 
                                     }
@@ -323,16 +328,39 @@ public class Tabuleiro {
                 if(mov>0) {
                     mov = testadordeXeque.testeXequeproprio(mapa, turno, mov, xin, yin, xout, yout);
                 }
+
+
 	            switch (mov){
 	                case 0:
 	                    break;
 	                case 1:
+                        if(mapa[xin][yin].getPeca() instanceof Rei){
+                            if(mapa[xin][yin].getPeca().getCor()==0){
+                                rbx=xin;
+                                rby=yin;
+                            }else{
+
+                                rpx=xin;
+                                rpy=yin;
+                            }
+                        }
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setOcupado(1);
+
 	                    ///Colocar troca de turno
 	                    break;
 	                case 2:
+                        if(mapa[xin][yin].getPeca() instanceof Rei){
+                            if(mapa[xin][yin].getPeca().getCor()==0){
+                                rbx=xin;
+                                rby=yin;
+
+                            }else{
+                                rpx=xin;
+                                rpy=yin;
+                            }
+                        }
 	                	mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xout][yout].setOcupado(1);

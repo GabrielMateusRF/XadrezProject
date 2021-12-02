@@ -12,10 +12,12 @@ public class Torre extends Peca{
 
         ///Caso ele tenha clicado na mesma casa.
         if(zx==0 && zy==0){
+            System.out.printf("\n a1");
             return 0;
         }
         
         if(zx==zy){
+            System.out.printf("\n a2");
         	return 0;
         }
         
@@ -25,6 +27,7 @@ public class Torre extends Peca{
 	        		//Caminho ocupado.
 					yin++;
 	                if(mapa[xdado][yin].getOcupado() == 1){
+                        System.out.printf("\n a3");
 	                	return 0;
 	                }
 	        	}
@@ -34,10 +37,12 @@ public class Torre extends Peca{
 					xin++;
 	        		//Caminho ocupado.
 	                if(mapa[xin][ydado].getOcupado() == 1){
+                        System.out.printf("\n a4");
 	                	return 0;
 	                }
 	        	}
 	        }else{
+                System.out.printf("\n a5");
 				return 0;
 			}
         }else if(xdado<=xin && ydado<=yin) {
@@ -46,6 +51,7 @@ public class Torre extends Peca{
 	        		//Caminho ocupado.
 					yin--;
 	                if(mapa[xdado][yin].getOcupado() == 1){
+                        System.out.printf("\n a6");
 	                	return 0;
 	                }
 	        	}
@@ -55,6 +61,7 @@ public class Torre extends Peca{
 					xin--;
 	        		//Caminho ocupado.
 	                if(mapa[xin][ydado].getOcupado() == 1){
+                        System.out.printf("\n a7");
 	                	return 0;
 	                }
 	        	}
@@ -68,14 +75,17 @@ public class Torre extends Peca{
         if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor.
         	if(mapa[xdado][ydado].getPeca().getCor()==this.cor) {
+                System.out.printf("\n a8");
         		return 0;
         	}
         	//Ocupado por outra cor(comeu a peca).
         	else {
+                System.out.printf("\n a8");
         		return 2;
         	}
         }
         //Caso ele clique em casa certa vazia.
+        System.out.printf("\n a9");
         return 1;
     }
 }
