@@ -1,10 +1,12 @@
 public class XequeTeste {
     int i, j, i2, j2, val, inimigo;
+    public Posicao pecasalva = new Posicao();
+
 
     public int testeXequeproprio(Posicao[][] mapa, int turno, int mov, int xin, int yin, int xout, int yout){
+
+
         switch (mov){
-            case 0:
-                break;
             case 1:
                 mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
                 mapa[xin][yin].setOcupado(0);
@@ -13,6 +15,7 @@ public class XequeTeste {
                 break;
             case 2:
                 mapa[xin][yin].setOcupado(0);
+                pecasalva.setPeca( mapa[xout][yout].getPeca());
                 mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
                 mapa[xout][yout].setOcupado(1);
                 ///Adicionar score
@@ -79,6 +82,27 @@ public class XequeTeste {
                                 }
                                 if(val>0){
                                     System.out.println("\n Tu se colocou em xeque  :v");
+                                    switch (mov){
+                                        case 1:
+                                            mapa[xin][yin].setPeca(mapa[xout][yout].getPeca());
+
+                                            mapa[xin][yin].setOcupado(1);
+                                            mapa[xout][yout].setOcupado(0);
+                                            ///Colocar troca de turno
+                                            break;
+                                        case 2:
+
+                                            mapa[xin][yin].setOcupado(0);
+                                            mapa[xin][yin].setPeca(mapa[xout][yout].getPeca());
+                                            mapa[xout][yout].setOcupado(0);
+                                            mapa[xout][yout].setPeca(pecasalva.getPeca());
+
+                                            mapa[xin][yin].setOcupado(1);
+                                            mapa[xout][yout].setOcupado(1);
+                                            ///Adicionar score
+                                            ///Colocar troca de turno
+                                            break;
+                                    }
                                     return 0;
                                 }
 
@@ -90,7 +114,7 @@ public class XequeTeste {
 
             }
         }
-        return 1;
+            return 1;
     }
 
 }
