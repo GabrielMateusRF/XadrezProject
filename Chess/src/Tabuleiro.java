@@ -17,13 +17,14 @@ public class Tabuleiro {
     public Rei rei1 = new Rei();
     public int turno; //0 branco, 1 preto
     int i, j;
-    int xequet;
+    int xequet, matet;
     public XequeTeste testadordeXeque= new XequeTeste();
 
     public void reset(){
         ///Reset turno
     	turno=0;
-    	
+    	xequet=0;
+        matet=0;
         ///Pecas ganhando cor
         peao0.setPeca(0);
         peao1.setPeca(1);
@@ -349,6 +350,10 @@ public class Tabuleiro {
 	            }
                 if(xequet==1){
                     System.out.printf("\n XEQUE HOMEM ARANHA MUHAHAHAHAAH\n");
+                    matet=testadordeXeque.testeMate(mapa, turno);
+                }
+                if(matet==1){
+                    System.out.printf("\n GAME OVER, WINNAR IS...: "+ turno);
                 }
 	            if(mov>0) {
 	            	if(turno==0) {
