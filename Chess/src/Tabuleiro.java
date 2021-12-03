@@ -270,12 +270,13 @@ public class Tabuleiro {
                                     	}
                                         
                                     } else {
-                                    	if(mapa[i][j].getPeca().getCor()==0){
-                                    		System.out.printf("|R0|");
-                                    	}else {
-                                    		System.out.printf("|R1|");
-                                    	}
-                                        
+                                        if(mapa[i][j].getPeca() instanceof Rei){
+                                        if (mapa[i][j].getPeca().getCor() == 0) {
+                                            System.out.printf("|R0|");
+                                        } else {
+                                            System.out.printf("|R1|");
+                                        }
+                                    }
                                     }
                                 }
                             }

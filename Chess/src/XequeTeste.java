@@ -1,6 +1,7 @@
 public class XequeTeste {
-    int i, j, i2, j2, val, inimigo, escape;
+    int i, j, i2, j2, i3, i4, j4, val, val2, inimigo, escape;
     public Posicao pecasalva = new Posicao();
+    public Posicao pecasalva2 = new Posicao();
     int imate, jmate;
     public int testeXequeproprio(Posicao[][] mapa, int turno, int mov, int xin, int yin, int xout, int yout) {
         val = 0;
@@ -200,7 +201,7 @@ public class XequeTeste {
 
 
     public int testeMate(Posicao[][] mapa, int turno){
-        val = 0;
+        val2 = 0;
         escape=0;
 
         if (turno == 0) {
@@ -211,14 +212,14 @@ public class XequeTeste {
         ;
         ///xequecheck
         ///Caso um movimento que tu fizer te coloca em xeque;
-        for (i = 0; i < 8; i++) {
-            for (j=0; j<8; j++){
+        for (i4 = 0; i4 < 8; i4++) {
+            for (j4=0; j4<8; j4++){
                 ///achar rei inimigo
-                if (mapa[i][j].getPeca() instanceof Rei && mapa[i][j].getOcupado() == 1 && mapa[i][j].getPeca().getCor() == inimigo) {
-                    System.out.printf("\n i: " + i + " j: " + j + "\n");
+                if (mapa[i4][j4].getPeca() instanceof Rei && mapa[i4][j4].getOcupado() == 1 && mapa[i4][j4].getPeca().getCor() == inimigo) {
+                    System.out.printf("\n i: " + i4 + " j: " + j4 + "\n");
                         ///i e j tem posição do rei
-                    for(i2=0; i2<8; i2++) {
-                        switch (i2){
+                    for(i3=0; i3<8; i3++) {
+                        switch (i3){
                             case 0:
                                 imate=i-1;
                                 jmate=j-1;
@@ -253,23 +254,30 @@ public class XequeTeste {
                                 break;
 
                         }
-                        val = ((Rei) mapa[i][j].getPeca()).movValido(mapa, i - 1, j - 1, i, j);
-                        if(val==0){
+                        System.out.printf("\n O i que tu procura 9: " +i3+" \n");
+                       ///Evitar verificações desnecessárias
+                        if((imate<0)||(imate>7)||(jmate<0)||(jmate>7)){
+                            val2=0;
+                        }else{
+                            val2 = ((Rei) mapa[i4][j4].getPeca()).movValido(mapa, imate, jmate, i4, j4);
+                        }
+
+                        if(val2==0){
                             escape++;
                         }
-                        if (val > 0) {
-                            switch (val) {
+                        if (val2 > 0) {
+                            switch (val2) {
                                 case 1:
-                                    mapa[i - 1][j - 1].setPeca(mapa[i][i].getPeca());
-                                    mapa[j][j].setOcupado(0);
-                                    mapa[i - 1][j - 1].setOcupado(1);
+                                    mapa[imate][jmate].setPeca(mapa[i4][j4].getPeca());
+                                    mapa[i4][j4].setOcupado(0);
+                                    mapa[imate][jmate].setOcupado(1);
                                     ///Colocar troca de turno
                                     break;
                                 case 2:
-                                    mapa[i][j].setOcupado(0);
-                                    pecasalva.setPeca(mapa[i - 1][j - 1].getPeca());
-                                    mapa[i - 1][j - 1].setPeca(mapa[i][j].getPeca());
-                                    mapa[i - 1][j - 1].setOcupado(1);
+                                    mapa[i4][j4].setOcupado(0);
+                                    pecasalva2.setPeca(mapa[imate][jmate].getPeca());
+                                    mapa[imate][jmate].setPeca(mapa[i4][j4].getPeca());
+                                    mapa[imate][jmate].setOcupado(1);
                                     ///Adicionar score
                                     ///Colocar troca de turno
                                     break;
@@ -277,23 +285,23 @@ public class XequeTeste {
                             ///aumenta em 1 se for cheque
                             escape += testeXeque(mapa, turno);
 
-                            switch (val) {
+                            switch (val2) {
                                 case 1:
-                                    mapa[i][j].setPeca(mapa[i - 1][j - 1].getPeca());
+                                    mapa[i4][j4].setPeca(mapa[imate][jmate].getPeca());
 
-                                    mapa[i][j].setOcupado(1);
-                                    mapa[i - 1][j - 1].setOcupado(0);
+                                    mapa[i4][j4].setOcupado(1);
+                                    mapa[imate][jmate].setOcupado(0);
                                     ///Colocar troca de turno
                                     break;
                                 case 2:
 
-                                    mapa[i][j].setOcupado(0);
-                                    mapa[i][j].setPeca(mapa[i - 1][j - 1].getPeca());
-                                    mapa[i - 1][j - 1].setOcupado(0);
-                                    mapa[i - 1][j - 1].setPeca(pecasalva.getPeca());
+                                    mapa[i4][j4].setOcupado(0);
+                                    mapa[i4][j4].setPeca(mapa[imate][jmate].getPeca());
+                                    mapa[imate][jmate].setOcupado(0);
+                                    mapa[imate][jmate].setPeca(pecasalva2.getPeca());
 
-                                    mapa[i][j].setOcupado(1);
-                                    mapa[i - 1][j - 1].setOcupado(1);
+                                    mapa[i4][j4].setOcupado(1);
+                                    mapa[imate][jmate].setOcupado(1);
                                     ///Adicionar score
                                     ///Colocar troca de turno
                                     break;
