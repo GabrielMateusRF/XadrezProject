@@ -20,10 +20,13 @@ public class Tabuleiro {
     int xequet, matet;
     int contp;
     int contmov;
-    int emptin0[] = new int[6];
-    int emptout0[] = new int[6];
-    int emptin1[] = new int[6];
-    int emptout1[] = new int[6];
+
+
+    public Posicao mesmapecaxeque0 = new Posicao();
+    public Posicao mesmapecaxeque1 = new Posicao();
+    int msmpxequecont0;
+    int msmpxequecont1;
+
     public XequeTeste testadordeXeque= new XequeTeste();
 
     public void reset(){
@@ -32,6 +35,8 @@ public class Tabuleiro {
     	xequet=0;
         matet=0;
         contmov=0;
+        msmpxequecont0=0;
+        msmpxequecont1=0;
         ///Pecas ganhando cor
         peao0.setPeca(0);
         peao1.setPeca(1);
@@ -46,12 +51,7 @@ public class Tabuleiro {
         rei0.setPeca(0);
         rei1.setPeca(1);
         ///
-        for(i=0; i<6; i++){
-            emptin0[i]=0;
-            emptout0[i]=0;
-            emptin1[i]=0;
-            emptout1[i]=0;
-        }
+
         for(i=0; i<8;i++){
             for(j=0;j<8;j++){
                 mapa[i][j]=new Posicao();
@@ -310,6 +310,12 @@ public class Tabuleiro {
         int xin=xi, yin=yi, xout=xo, yout=yo;
         int mov=0;
         contp=0;
+
+
+
+
+
+
             if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
 	
 	            if (mapa[xin][yin].getPeca() instanceof Peao) {
@@ -356,6 +362,17 @@ public class Tabuleiro {
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setOcupado(1);
+                        ///PROMO DO PEÃO PRA RAINHA
+                        /*
+                        for(i=0; i<8; i++){
+                            if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
+                                mapa[i][0].setPeca(rainha0);
+                            }else {
+                                if (mapa[i][7].getOcupado() == 1 && mapa[i][7].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor() == 1) {
+                                    mapa[i][7].setPeca(rainha1);
+                                }
+                            }
+                        }*/
                         xequet=testadordeXeque.testeXeque(mapa, turno);
 	                    ///Colocar troca de turno
 	                    break;
@@ -363,12 +380,22 @@ public class Tabuleiro {
 	                	mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xout][yout].setOcupado(1);
-	                    ///Adicionar score
-	                    ///Colocar troca de turno
+                        ///PROMO DO PEÃO PRA RAINHA
+                        /*
+                        for(i=0; i<8; i++){
+                            if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
+                                mapa[i][0].setPeca(rainha0);
+                            }else {
+                                if (mapa[i][7].getOcupado() == 1 && mapa[i][7].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor() == 1) {
+                                    mapa[i][7].setPeca(rainha1);
+                                }
+                            }
+                        }*/
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         contmov=0;
 	                    break;
 	            }
+
                 if(xequet==1){
                     System.out.printf("\n XEQUE HOMEM ARANHA MUHAHAHAHAAH\n");
                     matet=testadordeXeque.testeMate(mapa, turno);
@@ -387,7 +414,7 @@ public class Tabuleiro {
             System.out.println("\n Peca invalida");
         }
             
-            ///Checar se só tem os dois reis no campo
+            ///Checar se só tem os dois reis e + uma peça na regra de Falta de peças
         contp=0;
         for (j = 0; j < 8; j++) {
             for (i = 0; i < 8; i++) {
@@ -407,7 +434,45 @@ public class Tabuleiro {
         if(contmov>50){
             System.out.printf("\n EMPATE DE 50 MOVS \n");
         }
-        
+        /*Regra do xeque perpétuo, é colocar indefinidas vezes o rei do oponente
+        * em xeque, sem propósito de mudanças, isto será registrado colocando o rei em xeque
+        * movendo a mesma peça que o colocou 10 vezes*/
+        if(mov==1) {
+            if (xequet == 1) {
+                if (mesmapecaxeque0.getPeca() ==  mapa[xout][yout].getPeca() && turno==0) {
+                    msmpxequecont0++;
+                }else{
+                    if(mesmapecaxeque1.getPeca() ==  mapa[xout][yout].getPeca()){
+                        msmpxequecont1++;
+                    }else{
+                        if(turno==0){
+                            mesmapecaxeque0.setPeca(mapa[xout][yout].getPeca());
+                            msmpxequecont0=0;
+                        }else{
+                            mesmapecaxeque1.setPeca(mapa[xout][yout].getPeca());
+                            msmpxequecont1=0;
+                        }
+                    }
+                }
+            }else{
+                if(turno==0){
+                    msmpxequecont0=0;
+                }else{
+                    msmpxequecont1=0;
+                }
+            }
+        }else{
+            if(turno==0){
+                msmpxequecont0=0;
+            }else{
+                msmpxequecont1=0;
+            }
+        }
+        System.out.printf("\n msm0= "+msmpxequecont0+" msm1= " +msmpxequecont1+"\n");
+        if(msmpxequecont0>=10 || msmpxequecont1>=10){
+            System.out.printf("\n EMPATE DO XEQUE PERPETUO YAHAHAHAHAHA \n");
+        }
+
     }
 
 }
