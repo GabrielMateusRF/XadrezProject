@@ -18,6 +18,12 @@ public class Tabuleiro {
     public int turno; //0 branco, 1 preto
     int i, j;
     int xequet, matet;
+    int contp;
+    int contmov;
+    int emptin0[] = new int[6];
+    int emptout0[] = new int[6];
+    int emptin1[] = new int[6];
+    int emptout1[] = new int[6];
     public XequeTeste testadordeXeque= new XequeTeste();
 
     public void reset(){
@@ -25,6 +31,7 @@ public class Tabuleiro {
     	turno=0;
     	xequet=0;
         matet=0;
+        contmov=0;
         ///Pecas ganhando cor
         peao0.setPeca(0);
         peao1.setPeca(1);
@@ -39,7 +46,12 @@ public class Tabuleiro {
         rei0.setPeca(0);
         rei1.setPeca(1);
         ///
-        
+        for(i=0; i<6; i++){
+            emptin0[i]=0;
+            emptout0[i]=0;
+            emptin1[i]=0;
+            emptout1[i]=0;
+        }
         for(i=0; i<8;i++){
             for(j=0;j<8;j++){
                 mapa[i][j]=new Posicao();
@@ -227,9 +239,11 @@ public class Tabuleiro {
 
     ///Tabuleiro
     public void tabuleiroTest() {
+
         for (j = 0; j < 8; j++) {
             for (i = 0; i < 8; i++) {
                 if (mapa[i][j].getOcupado() == 1) {
+                    contp++;
                     if (mapa[i][j].getPeca() instanceof Peao) {
                     	if(mapa[i][j].getPeca().getCor()==0){
                     		System.out.printf("|P0|");
@@ -288,13 +302,14 @@ public class Tabuleiro {
             }
             System.out.printf("\n");
         }
+
     }
 
     public void mover(int xi, int yi, int xo, int yo){
         Scanner input = new Scanner(System.in);
         int xin=xi, yin=yi, xout=xo, yout=yo;
         int mov=0;
-            
+        contp=0;
             if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
 	
 	            if (mapa[xin][yin].getPeca() instanceof Peao) {
@@ -333,7 +348,11 @@ public class Tabuleiro {
 	                case 0:
 	                    break;
 	                case 1:
-
+                        if(mapa[xin][yin].getPeca() instanceof Peao){
+                            contmov=0;
+                        }else{
+                            contmov++;
+                        }
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setOcupado(1);
@@ -347,6 +366,7 @@ public class Tabuleiro {
 	                    ///Adicionar score
 	                    ///Colocar troca de turno
                         xequet=testadordeXeque.testeXeque(mapa, turno);
+                        contmov=0;
 	                    break;
 	            }
                 if(xequet==1){
@@ -366,6 +386,28 @@ public class Tabuleiro {
         }else{
             System.out.println("\n Peca invalida");
         }
+            
+            ///Checar se só tem os dois reis no campo
+        contp=0;
+        for (j = 0; j < 8; j++) {
+            for (i = 0; i < 8; i++) {
+                if (mapa[i][j].getOcupado() == 1) {
+                    contp++;
+                }
+            }
+            System.out.printf("\n");
+        }
+        if(contp==2){
+            System.out.printf("\n EMPATE DE 2 REIS \n");
+        }
+        /*A partida pode terminar no empate, se ambos os
+        jogadores completarem 50 lances consecutivos sem
+        a movimentação de qualquer peão e sem a captura
+        de qualquer peça.*/
+        if(contmov>50){
+            System.out.printf("\n EMPATE DE 50 MOVS \n");
+        }
+        
     }
 
 }
