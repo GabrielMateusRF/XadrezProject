@@ -18,8 +18,11 @@ import java.awt.FlowLayout;
 
 import javax.swing.JOptionPane;
 
+
+
 public class Jogo extends JFrame{
-	Tabuleiro tabu= new Tabuleiro();
+	Tabuleiro tabu = new Tabuleiro();
+	
 	///imagem tabuleiro
     ImageIcon tabuleiroImagem = new ImageIcon(getClass().getResource("Tabuleiro.png"));
 	ImageIcon selectionP1 = new ImageIcon(getClass().getResource("/data/SelecaoP1.png"));
@@ -45,10 +48,24 @@ public class Jogo extends JFrame{
 	ImageIcon rainha0 = new ImageIcon(getClass().getResource("/data/pecas/Rainha0.png"));
 	ImageIcon rei1 = new ImageIcon(getClass().getResource("/data/pecas/Rei1.png"));
 	ImageIcon rei0 = new ImageIcon(getClass().getResource("/data/pecas/Rei0.png"));
+	
+	
+	JPanel Aviso = new JPanel();
+	JLabel xeque = new JLabel("Cheque!");
+	JLabel xequeMate = new JLabel("Cheque mate! O jogo acabou!");
+	JLabel empate = new JLabel("solicitou um empate.");
+	JLabel vitoria = new JLabel("O vencedor é");
+	String[] opcoes = new String[]{"OK", "Cancelar"};
+	String[] opcoesEmpate = new String[]{"Aceitar", "Recusar"};
+	
+	int escolha;
 
-    public Jogo() {
+    public Jogo(String nome0, String nome1) { //Charlie Brown Jr me ajudou nisso, dedico essa vitoria a ele e sua banda.
     	tabu.reset();
         tabu.tabuleiroTest();
+        
+    	JLabel N1 = new JLabel(nome1);
+    	JLabel N0 = new JLabel(nome0);
         
         int cpb=8, cpp=0, ctp=16, ctb=18, cbb=20, cbp=22, ccb=26, ccp=24, crb=29, crp=28, cRb=30, cRp=31;
         
@@ -56,6 +73,7 @@ public class Jogo extends JFrame{
         	Pecas[i] = new JLabel();
         }
         
+        //Monta o tabuleiro pela primeira vez.
         for (int j = 0; j < 8; j++) {
             for (int i = 0; i < 8; i++) {
                 if (tabu.mapa[i][j].getOcupado() == 1) {
@@ -191,8 +209,6 @@ public class Jogo extends JFrame{
                             }
                         }
                     }
-                } else {
-                   
                 }
             }
         }
@@ -208,29 +224,28 @@ public class Jogo extends JFrame{
                 
                 System.out.println(x + "," + y);
                 
-            	if(scan == 0) {
-            		
-            		//Pega posicoes iniciais.
-            		xi = x;
-            		yi = y;
-            		
-                	xi=(int) ((xi-54)/62.5);
-                	yi=(int) ((yi-80)/62.5);
-            		if(tabu.mapa[xi][yi].getOcupado() == 1 && tabu.mapa[xi][yi].getPeca().getCor()==tabu.turno) {
-            			scan=1;
-            		}
-	            		
-            	}else {
-            		scan=0;
-            		//Pega posicoes finais.
-            		xo = x;
-            		yo = y;
-            		
-                	xo=(int) ((xo-54)/62.5);
-                	yo=(int) ((yo-80)/62.5);
-            	}
-            	
                 if(x>54 && y>80 && x<554 && y<580) {
+                	if(scan == 0) {
+                		//Pega posicoes iniciais.
+                		xi = x;
+                		yi = y;
+                		
+                    	xi=(int) ((xi-54)/62.5);
+                    	yi=(int) ((yi-80)/62.5);
+                		if(tabu.mapa[xi][yi].getOcupado() == 1 && tabu.mapa[xi][yi].getPeca().getCor()==tabu.turno) {
+                			scan=1;
+                		}
+    	            		
+                	}else {
+                		scan=0;
+                		//Pega posicoes finais.
+                		xo = x;
+                		yo = y;
+                		
+                    	xo=(int) ((xo-54)/62.5);
+                    	yo=(int) ((yo-80)/62.5);
+                	}
+                	
                 	//Movimento finalizado.
                     if(scan == 0) {
                         tabu.tabuleiroTest();
@@ -252,6 +267,42 @@ public class Jogo extends JFrame{
                         remove(SelectionP2);
                        
                     }
+                    //Caso alguém peça empate.
+                }else if(x>11 && y>237 && x<46 && y<511){
+                	
+                	if(tabu.turno == 1) {
+                		Aviso.add(N1);
+                		Aviso.remove(N0);
+                	}else {
+                		Aviso.add(N0);
+                		Aviso.remove(N1);
+                	}
+                	Aviso.add(empate);
+                	Aviso.setPreferredSize(new Dimension(200,100));
+                	
+                	escolha = JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoesEmpate, opcoesEmpate[1]);
+                	
+                	Aviso.remove(empate);
+                	
+                	if(escolha == 0) {
+                		dispose();
+                	}
+                }else if(x>559 && y>205 && x<595 && y<511){
+                	Aviso.add(vitoria);
+                	if(tabu.turno == 1) {
+                		Aviso.add(N0);
+                		Aviso.remove(N1);
+                	}else {
+                		Aviso.add(N1);
+                		Aviso.remove(N0);
+                	}
+                	
+                	Aviso.setPreferredSize(new Dimension(200,100));
+                	
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	
+                	dispose();
+                	
                 }
                 
                 //Apaga as peças e o tabuleiro para coloca-las novamente nos lugares corretos.
@@ -295,18 +346,32 @@ public class Jogo extends JFrame{
                                 		x = (int) (45+(i*62.5));
                                 		y = (int) (47+(j*62.5));
                                 		
-                                		(Pecas[ctp]).setIcon(torre1);
-                                        add(Pecas[ctp]);
-                                        (Pecas[ctp]).setBounds(x,y,62,62); 
-                                        ctp++;
+                                		if(ctp <= 17) {
+	                                		(Pecas[ctp]).setIcon(torre1);
+	                                        add(Pecas[ctp]);
+	                                        (Pecas[ctp]).setBounds(x,y,62,62); 
+	                                        ctp++;
+                                		}else {
+                                			(Pecas[cpp]).setIcon(torre1);
+                                        	add(Pecas[cpp]);
+                                        	(Pecas[cpp]).setBounds(x,y,62,62); 
+                                        	cpp++;
+                                		}
                                 	}else {
                                 		x = (int) (45+(i*62.5));
                                 		y = (int) (47+(j*62.5));
                                 		
-                                		(Pecas[ctb]).setIcon(torre0);
-                                        add(Pecas[ctb]);
-                                        (Pecas[ctb]).setBounds(x,y,62,62); 
-                                        ctb++;
+                                		if(ctb <= 19) {
+	                                		(Pecas[ctb]).setIcon(torre0);
+	                                        add(Pecas[ctb]);
+	                                        (Pecas[ctb]).setBounds(x,y,62,62); 
+	                                        ctb++;
+                                		}else {
+                                			(Pecas[cpb]).setIcon(torre0);
+                                        	add(Pecas[cpb]);
+                                        	(Pecas[cpb]).setBounds(x,y,62,62); 
+                                        	cpb++;
+                                		}
                                 	}
                                    
                                 } else {
@@ -317,18 +382,32 @@ public class Jogo extends JFrame{
                                     		x = (int) (45+(i*62.5));
                                     		y = (int) (47+(j*62.5));
                                     		
-                                    		(Pecas[ccp]).setIcon(cavalo1);
-                                            add(Pecas[ccp]);
-                                            (Pecas[ccp]).setBounds(x,y,62,62); 
-                                            ccp++;
+                                    		if(ccp <= 25) {
+	                                    		(Pecas[ccp]).setIcon(cavalo1);
+	                                            add(Pecas[ccp]);
+	                                            (Pecas[ccp]).setBounds(x,y,62,62); 
+	                                            ccp++;
+                                    		}else {
+                                    			(Pecas[cpp]).setIcon(cavalo1);
+                                            	add(Pecas[cpp]);
+                                            	(Pecas[cpp]).setBounds(x,y,62,62); 
+                                            	cpp++;
+                                    		}
                                     	}else {
                                     		x = (int) (45+(i*62.5));
                                     		y = (int) (47+(j*62.5));
                                     		
-                                    		(Pecas[ccb]).setIcon(cavalo0);
-                                            add(Pecas[ccb]);
-                                            (Pecas[ccb]).setBounds(x,y,62,62); 
-                                            ccb++;
+                                    		if(ccb <= 27) {
+	                                    		(Pecas[ccb]).setIcon(cavalo0);
+	                                            add(Pecas[ccb]);
+	                                            (Pecas[ccb]).setBounds(x,y,62,62); 
+	                                            ccb++;
+                                    		}else {
+                                    			(Pecas[cpb]).setIcon(cavalo0);
+                                            	add(Pecas[cpb]);
+                                            	(Pecas[cpb]).setBounds(x,y,62,62); 
+                                            	cpb++;
+                                    		}
                                     	}
                                        
                                     } else {
@@ -339,18 +418,32 @@ public class Jogo extends JFrame{
                                         		x = (int) (45+(i*62.5));
                                         		y = (int) (47+(j*62.5));
                                         		
-                                        		(Pecas[cbp]).setIcon(bispo1);
-                                                add(Pecas[cbp]);
-                                                (Pecas[cbp]).setBounds(x,y,62,62); 
-                                                cbp++;
+                                        		if(cbp <= 23) {
+	                                        		(Pecas[cbp]).setIcon(bispo1);
+	                                                add(Pecas[cbp]);
+	                                                (Pecas[cbp]).setBounds(x,y,62,62); 
+	                                                cbp++;
+                                        		}else {
+                                        			(Pecas[cpp]).setIcon(bispo1);
+                                                	add(Pecas[cpp]);
+                                                	(Pecas[cpp]).setBounds(x,y,62,62); 
+                                                	cpp++;
+                                        		}
                                         	}else {
                                         		x = (int) (45+(i*62.5));
                                         		y = (int) (47+(j*62.5));
                                         		
-                                        		(Pecas[cbb]).setIcon(bispo0);
-                                                add(Pecas[cbb]);
-                                                (Pecas[cbb]).setBounds(x,y,62,62); 
-                                                cbb++;
+                                        		if(cbb <= 21) {
+	                                        		(Pecas[cbb]).setIcon(bispo0);
+	                                                add(Pecas[cbb]);
+	                                                (Pecas[cbb]).setBounds(x,y,62,62); 
+	                                                cbb++;
+                                        		}else {
+                                        			(Pecas[cpb]).setIcon(bispo0);
+                                                	add(Pecas[cpb]);
+                                                	(Pecas[cpb]).setBounds(x,y,62,62); 
+                                                	cpb++;
+                                        		}
                                         	}
                                             
                                         } else {
@@ -361,18 +454,34 @@ public class Jogo extends JFrame{
                                             		x = (int) (45+(i*62.5));
                                             		y = (int) (47+(j*62.5));
                                             		
-                                            		(Pecas[crp]).setIcon(rainha1);
-                                                    add(Pecas[crp]);
-                                                    (Pecas[crp]).setBounds(x,y,62,62); 
+                                            		if(crp == 28) {
+                                            			(Pecas[crp]).setIcon(rainha1);
+                                                    	add(Pecas[crp]);
+                                                    	(Pecas[crp]).setBounds(x,y,62,62); 
+                                                    	crp++;
+                                            		}else{
+                                            			(Pecas[cpp]).setIcon(rainha1);
+                                                    	add(Pecas[cpp]);
+                                                    	(Pecas[cpp]).setBounds(x,y,62,62); 
+                                                    	cpp++;
+                                            		}
+                                                    
                                             	}else {
                                             		x = (int) (45+(i*62.5));
                                             		y = (int) (47+(j*62.5));
                                             		
-                                            		(Pecas[crb]).setIcon(rainha0);
-                                                    add(Pecas[crb]);
-                                                    (Pecas[crb]).setBounds(x,y,62,62); 
+                                            		if(crb == 29) {
+	                                            		(Pecas[crb]).setIcon(rainha0);
+	                                                    add(Pecas[crb]);
+	                                                    (Pecas[crb]).setBounds(x,y,62,62); 
+	                                                    crb++; 
+                                            		}else{
+                                            			(Pecas[cpb]).setIcon(rainha0);
+                                                    	add(Pecas[cpb]);
+                                                    	(Pecas[cpb]).setBounds(x,y,62,62); 
+                                                    	cpb++;
+                                            		}
                                             	}
-                                                
                                             } else {
                                                 //Rei preto = 30.
                                                 //Rei branco = 31.
@@ -396,12 +505,27 @@ public class Jogo extends JFrame{
                                     }
                                 }
                             }
-                        } else {
-                           
                         }
                     }
                 }
                 add(tabuleiro);
+                
+                if(tabu.xequet == 1 && tabu.matet != 1) {
+                	Aviso.add(xeque);
+                	Aviso.setPreferredSize(new Dimension(200,100));
+                	
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	tabu.xequet = 0;
+                	Aviso.remove(xeque);
+                }else if(tabu.matet == 1) {
+                	Aviso.add(xequeMate);
+                	Aviso.setPreferredSize(new Dimension(200,100));
+                	
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	Aviso.remove(xequeMate);
+                }
+                
+                
             }
         });
     }

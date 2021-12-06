@@ -37,6 +37,7 @@ class MenuClick extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         addMouseListener (new MouseAdapter() {
+        	
             public void mousePressed (MouseEvent a) {//Checa clique do mouse.
                 int x = a.getX();
                 int y = a.getY();
@@ -44,10 +45,10 @@ class MenuClick extends JFrame{
                 if(x>167 && x<434 && y>315 && y<385){
                 	//Jogo.
 
-                	Jogo jogo = new Jogo();
-                	jogo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                	jogo.setSize(607,635);
-                	jogo.setVisible(true);
+                	Nomes nomes = new Nomes();
+                	nomes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                	nomes.setSize(607,635);
+                	nomes.setVisible(true);
 
                 }else{
                     if(x>167 && x<434 && y>415 && y<485){

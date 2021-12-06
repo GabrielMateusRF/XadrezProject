@@ -26,8 +26,15 @@ public class Tabuleiro {
     public Posicao mesmapecaxeque1 = new Posicao();
     int msmpxequecont0;
     int msmpxequecont1;
+    public String nome0 = new String();
+    public String nome1 = new String();
 
     public XequeTeste testadordeXeque= new XequeTeste();
+    
+    public void setNomes(String N1, String N0) {
+    	nome1 = N1;
+    	nome0 = N0;
+    }
 
     public void reset(){
         ///Reset turno
@@ -51,7 +58,7 @@ public class Tabuleiro {
         rei0.setPeca(0);
         rei1.setPeca(1);
         ///
-
+        
         for(i=0; i<8;i++){
             for(j=0;j<8;j++){
                 mapa[i][j]=new Posicao();
@@ -239,6 +246,8 @@ public class Tabuleiro {
 
     ///Tabuleiro
     public void tabuleiroTest() {
+    	
+        System.out.println(nome0);
 
         for (j = 0; j < 8; j++) {
             for (i = 0; i < 8; i++) {
@@ -363,7 +372,7 @@ public class Tabuleiro {
 	                    mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setOcupado(1);
                         ///PROMO DO PEÃO PRA RAINHA
-                        /*
+                        
                         for(i=0; i<8; i++){
                             if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
                                 mapa[i][0].setPeca(rainha0);
@@ -372,7 +381,7 @@ public class Tabuleiro {
                                     mapa[i][7].setPeca(rainha1);
                                 }
                             }
-                        }*/
+                        }
                         xequet=testadordeXeque.testeXeque(mapa, turno);
 	                    ///Colocar troca de turno
 	                    break;
@@ -381,7 +390,7 @@ public class Tabuleiro {
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xout][yout].setOcupado(1);
                         ///PROMO DO PEÃO PRA RAINHA
-                        /*
+                        
                         for(i=0; i<8; i++){
                             if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
                                 mapa[i][0].setPeca(rainha0);
@@ -390,7 +399,7 @@ public class Tabuleiro {
                                     mapa[i][7].setPeca(rainha1);
                                 }
                             }
-                        }*/
+                        }
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         contmov=0;
 	                    break;
