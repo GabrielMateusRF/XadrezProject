@@ -1,6 +1,7 @@
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -13,9 +14,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-
 import javax.swing.JOptionPane;
 
 
@@ -28,9 +29,10 @@ public class Jogo extends JFrame{
 	ImageIcon selectionP1 = new ImageIcon(getClass().getResource("/data/SelecaoP1.png"));
 	ImageIcon selectionP2 = new ImageIcon(getClass().getResource("/data/SelecaoP2.png"));
 	
-   ///Criar menu
+    ///Criar menu
     JLabel tabuleiro = new JLabel(tabuleiroImagem);
     JLabel[] Pecas = new JLabel[32];
+    JLabel[] Selection = new JLabel[32];
     JLabel SelectionP1 = new JLabel(selectionP1);
     JLabel SelectionP2 = new JLabel(selectionP2);
     
@@ -50,6 +52,7 @@ public class Jogo extends JFrame{
 	ImageIcon rei0 = new ImageIcon(getClass().getResource("/data/pecas/Rei0.png"));
 	
 	
+	
 	JPanel Aviso = new JPanel();
 	JLabel xeque = new JLabel("Cheque!");
 	JLabel xequeMate = new JLabel("Cheque mate! O jogo acabou!");
@@ -61,16 +64,26 @@ public class Jogo extends JFrame{
 	int escolha;
 
     public Jogo(String nome0, String nome1) { //Charlie Brown Jr me ajudou nisso, dedico essa vitoria a ele e sua banda.
+    	
+    	//MONTAGEM DO TABULEIRO ---------------------------------------------------------------------------------------
     	tabu.reset();
         tabu.tabuleiroTest();
         
+        //Cor preta.
     	JLabel N1 = new JLabel(nome1);
     	JLabel N0 = new JLabel(nome0);
+    	
+    	//Cor branca.
+    	JLabel N1tabu = new JLabel(nome1);
+    	JLabel N0tabu = new JLabel(nome0);
+    	
         
         int cpb=8, cpp=0, ctp=16, ctb=18, cbb=20, cbp=22, ccb=26, ccp=24, crb=29, crp=28, cRb=30, cRp=31;
         
         for(int i=0; i<=31;i++) {
         	Pecas[i] = new JLabel();
+        	Selection[i] = new JLabel();
+        	Selection[i].setIcon(selectionP2);
         }
         
         //Monta o tabuleiro pela primeira vez.
@@ -212,18 +225,29 @@ public class Jogo extends JFrame{
                 }
             }
         }
+        //Nomes dos jogadores.
+        add(N0tabu);
+        N0tabu.setForeground(Color.decode("#FFFFFF"));
+        N0tabu.setBounds(50, -25, 100, 100);
+        
+        add(N1tabu);
+        N1tabu.setForeground(Color.decode("#FFFFFF"));
+        N1tabu.setBounds(237, 520, 100, 100);
         
         add(tabuleiro);
+        
+        //---------------------------------------------------------------------------------------------------------------------
 
         addMouseListener (new MouseAdapter() {
             public void mousePressed (MouseEvent a) {//Checa clique do mouse
-            	int cpb=8, cpp=0, ctp=16, ctb=18, cbb=20, cbp=22, ccb=26, ccp=24, crb=29, crp=28, cRb=30, cRp=31;
+            	int cpb=8, cpp=0, ctp=16, ctb=18, cbb=20, cbp=22, ccb=26, ccp=24, crb=29, crp=28, cRb=30, cRp=31, mov, k=0;
             	//Pega posicao.
                 x = a.getX();
                 y = a.getY();
                 
-                System.out.println(x + "," + y);
                 
+                System.out.println(x + "," + y);
+
                 if(x>54 && y>80 && x<554 && y<580) {
                 	if(scan == 0) {
                 		//Pega posicoes iniciais.
@@ -253,20 +277,22 @@ public class Jogo extends JFrame{
                         tabu.tabuleiroTest();
                         
                         //Quadrado de selecao.
-                        x = (int) (42+(xo*62.5));
-                        y = (int) (40+(yo*62.5));
+                        x = (int) (44+(xo*62.5));
+                        y = (int) (43+(yo*62.5));
+                        remove(SelectionP1);
                     	add(SelectionP2);
                         SelectionP2.setBounds(x,y,66,70);
-                        remove(SelectionP1);
+                        
                     }else{
                     	//Quadrado de selecao.
-                    	x = (int) (42+(xi*62.5));
-                        y = (int) (40+(yi*62.5));
+                    	x = (int) (44+(xi*62.5));
+                        y = (int) (43+(yi*62.5));
+                        remove(SelectionP2);
                     	add(SelectionP1);
                         SelectionP1.setBounds(x,y,66,70);
-                        remove(SelectionP2);
-                       
+
                     }
+                    
                     //Caso alguém peça empate.
                 }else if(x>11 && y>237 && x<46 && y<511){
                 	
@@ -287,14 +313,15 @@ public class Jogo extends JFrame{
                 	if(escolha == 0) {
                 		dispose();
                 	}
+                	//Desistir.
                 }else if(x>559 && y>205 && x<595 && y<511){
                 	Aviso.add(vitoria);
                 	if(tabu.turno == 1) {
-                		Aviso.add(N0);
-                		Aviso.remove(N1);
-                	}else {
                 		Aviso.add(N1);
                 		Aviso.remove(N0);
+                	}else {
+                		Aviso.add(N0);
+                		Aviso.remove(N1);
                 	}
                 	
                 	Aviso.setPreferredSize(new Dimension(200,100));
@@ -302,18 +329,59 @@ public class Jogo extends JFrame{
                 	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
                 	
                 	dispose();
-                	
                 }
                 
                 //Apaga as peças e o tabuleiro para coloca-las novamente nos lugares corretos.
                 for(int i=0; i<=31;i++) {
                 	remove(Pecas[i]);
                 }
+                for(int i=0; i<=31;i++) {
+                	remove(Selection[i]);
+                }
+                
                 remove(tabuleiro);
+                
+                repaint();
                 
                 //Atualiza a posicao das pecas no tabuleiro de acordo com a matriz de posicoes. Tambem atualiza o tabuleiro para as pecas ficarem sobrepostas a ele.
                 for (int j = 0; j < 8; j++) {
                     for (int i = 0; i < 8; i++) {
+                    	
+                    	if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
+	                    	if (tabu.mapa[xi][yi].getPeca() instanceof Peao) {
+	        	                System.out.printf("\n P \n");
+	        	                mov=((Peao) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	            } else {
+	        	                if (tabu.mapa[xi][yi].getPeca() instanceof Torre) {
+	        	                    mov=((Torre) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	                } else {
+	        	                    if (tabu.mapa[xi][yi].getPeca() instanceof Cavalo) {
+	        	                    	mov=((Cavalo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	                    } else {
+	        	                        if (tabu.mapa[xi][yi].getPeca() instanceof Bispo) {
+	        	                        	mov=((Bispo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	                        } else {
+	        	                            if (tabu.mapa[xi][yi].getPeca() instanceof Rainha) {
+	        	                            	mov=((Rainha) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	                            } else {
+	        	                                mov=((Rei) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+	        	                            }
+	        	                        }
+	        	                    }
+	        	                }
+	        	            }
+	                    	
+	                    	if(mov > 0) {
+		                    	xo = (int) (44+(i*62.5));
+		                        yo = (int) (43+(j*62.5));
+		                        if(scan==1) {
+			                    	add(Selection[k]);
+			                        Selection[k].setBounds(xo,yo,66,70);
+		                        }
+		                        k++;
+	                    	}
+                    	}
+                    	
                         if (tabu.mapa[i][j].getOcupado() == 1) {
                             if (tabu.mapa[i][j].getPeca() instanceof Peao) {
                                 //Peoes pretos = 0 a 7.
@@ -508,8 +576,19 @@ public class Jogo extends JFrame{
                         }
                     }
                 }
+                
+                //Nomes dos jogadores.
+                add(N0tabu);
+                N0tabu.setForeground(Color.decode("#FFFFFF"));
+                N0tabu.setBounds(50, -25, 100, 100);
+                
+                add(N1tabu);
+                N1tabu.setForeground(Color.decode("#FFFFFF"));
+                N1tabu.setBounds(237, 520, 100, 100);
+                
                 add(tabuleiro);
                 
+                //Verifica xeque e imprime.
                 if(tabu.xequet == 1 && tabu.matet != 1) {
                 	Aviso.add(xeque);
                 	Aviso.setPreferredSize(new Dimension(200,100));
@@ -517,15 +596,29 @@ public class Jogo extends JFrame{
                 	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
                 	tabu.xequet = 0;
                 	Aviso.remove(xeque);
+                //Verifica xeque mate e imprime.
                 }else if(tabu.matet == 1) {
                 	Aviso.add(xequeMate);
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
                 	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
                 	Aviso.remove(xequeMate);
+                	
+                	Aviso.add(vitoria);
+                	if(tabu.turno == 1) {
+                		Aviso.add(N1);
+                		Aviso.remove(N0);
+                	}else {
+                		Aviso.add(N0);
+                		Aviso.remove(N1);
+                	}
+                	
+                	Aviso.setPreferredSize(new Dimension(200,100));
+                	
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
                 }
                 
-                
+    
             }
         });
     }
