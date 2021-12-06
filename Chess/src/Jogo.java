@@ -347,7 +347,7 @@ public class Jogo extends JFrame{
                 for (int j = 0; j < 8; j++) {
                     for (int i = 0; i < 8; i++) {
                     	
-                    	if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
+                    		if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
 	                    	if (tabu.mapa[xi][yi].getPeca() instanceof Peao) {
 	        	                System.out.printf("\n P \n");
 	        	                mov=((Peao) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);

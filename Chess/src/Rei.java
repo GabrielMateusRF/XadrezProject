@@ -11,6 +11,19 @@ public class Rei extends Peca{
     		zy = zy*(-1);
     	}
 
+		if(xin==4 && yin==0 && xdado==6 && ydado==0 && mapa[5][0].getOcupado()==0 && mapa[6][0].getOcupado()==0){
+			System.out.printf("JOJO");
+			return 3;
+		}else{
+			if(xin==4 && yin==7 && xdado==6 && ydado==7 && mapa[5][7].getOcupado()==0 && mapa[6][7].getOcupado()==0){
+				System.out.printf("DIO");
+				return 3;
+			}
+			System.out.printf("JOoosuke");
+		}
+		System.out.printf("Joseph Joestar");
+
+
         ///Caso ele tenha clicado na mesma casa
         if(zx==0 && zy==0){
             return 0;

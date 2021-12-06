@@ -343,7 +343,7 @@ public class Tabuleiro {
 	                            if (mapa[xin][yin].getPeca() instanceof Rainha) {
 	                            	mov=((Rainha) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
 	                            } else {
-	                                mov=((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
+                                        mov = ((Rei) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
 	                            }
 	                        }
 	                    }
@@ -386,6 +386,16 @@ public class Tabuleiro {
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         contmov=0;
 	                    break;
+                    case 3:
+                        mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                        mapa[xout][yout].setOcupado(1);
+                        mapa[xin][yin].setOcupado(0);
+                        mapa[xin+1][yin].setPeca(mapa[xin+3][yin].getPeca());
+                        mapa[xin+1][yin].setOcupado(1);
+                        mapa[xin+3][yin].setOcupado(0);
+
+                        xequet=testadordeXeque.testeXeque(mapa, turno);
+                        break;
 	            }
 
                 if(xequet==1){
@@ -416,7 +426,7 @@ public class Tabuleiro {
             }
             System.out.printf("\n");
         }
-        if(contp==2){
+        if(contp==3){
             System.out.printf("\n EMPATE DE 2 REIS \n");
         }
         /*A partida pode terminar no empate, se ambos os

@@ -21,6 +21,15 @@ public class XequeTeste {
                 ///Adicionar score
                 ///Colocar troca de turno
                 break;
+
+            case 3:
+                mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
+                mapa[xout][yout].setOcupado(1);
+                mapa[xin][yin].setOcupado(0);
+                mapa[xin+1][yin].setPeca(mapa[xin+3][yin].getPeca());
+                mapa[xin+1][yin].setOcupado(1);
+                mapa[xin+3][yin].setOcupado(0);
+                break;
         }
 
         if (turno == 0) {
@@ -103,6 +112,14 @@ public class XequeTeste {
                                         mapa[xout][yout].setOcupado(1);
                                         ///Adicionar score
                                         ///Colocar troca de turno
+                                        break;
+                                    case 3:
+                                        mapa[xin+3][yin].setPeca(mapa[xin+1][yin].getPeca());
+                                        mapa[xin+1][yin].setOcupado(0);
+                                        mapa[xin+3][yin].setOcupado(1);
+                                        mapa[xin][yin].setPeca(mapa[xout][yout].getPeca());
+                                        mapa[xout][yout].setOcupado(0);
+                                        mapa[xin][yin].setOcupado(1);
                                         break;
                                 }
                                 return 0;
@@ -281,6 +298,14 @@ public class XequeTeste {
                                     ///Adicionar score
                                     ///Colocar troca de turno
                                     break;
+                                case 3:
+                                    mapa[imate][jmate].setPeca(mapa[i4][j4].getPeca());
+                                    mapa[imate][jmate].setOcupado(1);
+                                    mapa[i4][j4].setOcupado(0);
+                                    mapa[i4+1][j4].setPeca(mapa[i4+3][j4].getPeca());
+                                    mapa[i4+1][j4].setOcupado(1);
+                                    mapa[i4+3][j4].setOcupado(0);
+                                    break;
                             }
                             ///aumenta em 1 se for cheque
                             escape += testeXeque(mapa, turno);
@@ -304,6 +329,15 @@ public class XequeTeste {
                                     mapa[imate][jmate].setOcupado(1);
                                     ///Adicionar score
                                     ///Colocar troca de turno
+                                    break;
+                                case 3:
+
+                                    mapa[i4+3][j4].setPeca(mapa[i4+1][j4].getPeca());
+                                    mapa[i4+1][j4].setOcupado(0);
+                                    mapa[i4+3][j4].setOcupado(1);
+                                    mapa[i4][j4].setPeca(mapa[imate][jmate].getPeca());
+                                    mapa[imate][jmate].setOcupado(0);
+                                    mapa[i4][j4].setOcupado(1);
                                     break;
                             }
 
