@@ -24,8 +24,8 @@ public class Nomes extends JFrame{
     	add(nomes);
         
         
-        nome0.setBounds(200, 70, 200, 30);
-        nome1.setBounds(200, 335, 200, 30);
+        nome1.setBounds(200, 70, 200, 30);
+        nome0.setBounds(200, 335, 200, 30);
         addMouseListener (new MouseAdapter() {
         	
         	

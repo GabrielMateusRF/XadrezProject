@@ -58,8 +58,10 @@ public class Jogo extends JFrame{
 	JLabel xequeMate = new JLabel("Cheque mate! O jogo acabou!");
 	JLabel empate = new JLabel("solicitou um empate.");
 	JLabel vitoria = new JLabel("O vencedor é");
+	JLabel pecas = new JLabel("Escolha sua peça de promoção:");
 	String[] opcoes = new String[]{"OK", "Cancelar"};
 	String[] opcoesEmpate = new String[]{"Aceitar", "Recusar"};
+	String[] opcoesPecas = new String[]{"Torre", "Cavalo", "Bispo", "Rainha"};
 	
 	int escolha;
 
@@ -245,7 +247,7 @@ public class Jogo extends JFrame{
                 x = a.getX();
                 y = a.getY();
                 
-                
+                repaint();
                 System.out.println(x + "," + y);
 
                 if(x>54 && y>80 && x<554 && y<580) {
@@ -341,47 +343,47 @@ public class Jogo extends JFrame{
                 
                 remove(tabuleiro);
                 
-                repaint();
-                
                 //Atualiza a posicao das pecas no tabuleiro de acordo com a matriz de posicoes. Tambem atualiza o tabuleiro para as pecas ficarem sobrepostas a ele.
                 for (int j = 0; j < 8; j++) {
                     for (int i = 0; i < 8; i++) {
                     	
-                    		if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
-	                    	if (tabu.mapa[xi][yi].getPeca() instanceof Peao) {
-	        	                System.out.printf("\n P \n");
-	        	                mov=((Peao) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	            } else {
-	        	                if (tabu.mapa[xi][yi].getPeca() instanceof Torre) {
-	        	                    mov=((Torre) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	                } else {
-	        	                    if (tabu.mapa[xi][yi].getPeca() instanceof Cavalo) {
-	        	                    	mov=((Cavalo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	                    } else {
-	        	                        if (tabu.mapa[xi][yi].getPeca() instanceof Bispo) {
-	        	                        	mov=((Bispo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	                        } else {
-	        	                            if (tabu.mapa[xi][yi].getPeca() instanceof Rainha) {
-	        	                            	mov=((Rainha) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	                            } else {
-	        	                                mov=((Rei) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
-	        	                            }
-	        	                        }
-	        	                    }
-	        	                }
-	        	            }
-	                    	
-	                    	if(mov > 0) {
-		                    	xo = (int) (44+(i*62.5));
-		                        yo = (int) (43+(j*62.5));
-		                        if(scan==1) {
-			                    	add(Selection[k]);
-			                        Selection[k].setBounds(xo,yo,66,70);
-		                        }
-		                        k++;
+                    	if (tabu.mapa[xi][yi].getOcupado() == 1) {
+	                    	if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
+		                    	if (tabu.mapa[xi][yi].getPeca() instanceof Peao) {
+		        	                System.out.printf("\n P \n");
+		        	                mov=((Peao) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	            } else {
+		        	                if (tabu.mapa[xi][yi].getPeca() instanceof Torre) {
+		        	                    mov=((Torre) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	                } else {
+		        	                    if (tabu.mapa[xi][yi].getPeca() instanceof Cavalo) {
+		        	                    	mov=((Cavalo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	                    } else {
+		        	                        if (tabu.mapa[xi][yi].getPeca() instanceof Bispo) {
+		        	                        	mov=((Bispo) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	                        } else {
+		        	                            if (tabu.mapa[xi][yi].getPeca() instanceof Rainha) {
+		        	                            	mov=((Rainha) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	                            } else {
+		        	                                mov=((Rei) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
+		        	                            }
+		        	                        }
+		        	                    }
+		        	                }
+		        	            }
+		                    	
+		                    	if(mov > 0) {
+			                    	int xaux = (int) (44+(i*62.5));
+			                        int yaux = (int) (43+(j*62.5));
+			                        if(scan==1) {
+				                    	add(Selection[k]);
+				                        Selection[k].setBounds(xaux,yaux,66,70);
+			                        }
+			                        k++;
+		                    	}
 	                    	}
                     	}
-                    	
+	                    
                         if (tabu.mapa[i][j].getOcupado() == 1) {
                             if (tabu.mapa[i][j].getPeca() instanceof Peao) {
                                 //Peoes pretos = 0 a 7.
@@ -588,6 +590,30 @@ public class Jogo extends JFrame{
                 
                 add(tabuleiro);
                 
+                //Promocao do peao.
+                for(int i=0; i<8; i++){
+                    if(tabu.mapa[i][0].getOcupado()==1 && tabu.mapa[i][0].getPeca() instanceof Peao && tabu.mapa[i][0].getPeca().getCor()==0){
+                    	Aviso.add(pecas);
+                    	Aviso.setPreferredSize(new Dimension(200,100));
+                    	
+                    	escolha = JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoesPecas, opcoesPecas[3]);
+                    	Aviso.remove(pecas);
+                    	
+                    	tabu.transin(xo, tabu.turno, escolha);
+                    	
+                    }else {
+                        if (tabu.mapa[i][7].getOcupado() == 1 && tabu.mapa[i][7].getPeca() instanceof Peao && tabu.mapa[i][0].getPeca().getCor() == 1) {
+                        	Aviso.add(pecas);
+                        	Aviso.setPreferredSize(new Dimension(200,100));
+                        	
+                        	escolha = JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoesPecas, opcoesPecas[3]);
+                        	Aviso.remove(pecas);
+                        	
+                        	tabu.transin(xo, tabu.turno, escolha);
+                        }
+                    }
+                }
+               
                 //Verifica xeque e imprime.
                 if(tabu.xequet == 1 && tabu.matet != 1) {
                 	Aviso.add(xeque);
