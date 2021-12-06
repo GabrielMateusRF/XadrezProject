@@ -372,16 +372,7 @@ public class Tabuleiro {
 	                    mapa[xin][yin].setOcupado(0);
 	                    mapa[xout][yout].setOcupado(1);
                         ///PROMO DO PEÃO PRA RAINHA
-                        
-                        for(i=0; i<8; i++){
-                            if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
-                                mapa[i][0].setPeca(rainha0);
-                            }else {
-                                if (mapa[i][7].getOcupado() == 1 && mapa[i][7].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor() == 1) {
-                                    mapa[i][7].setPeca(rainha1);
-                                }
-                            }
-                        }
+                        promocao();
                         xequet=testadordeXeque.testeXeque(mapa, turno);
 	                    ///Colocar troca de turno
 	                    break;
@@ -390,16 +381,8 @@ public class Tabuleiro {
 	                    mapa[xout][yout].setPeca(mapa[xin][yin].getPeca());
 	                    mapa[xout][yout].setOcupado(1);
                         ///PROMO DO PEÃO PRA RAINHA
-                        
-                        for(i=0; i<8; i++){
-                            if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
-                                mapa[i][0].setPeca(rainha0);
-                            }else {
-                                if (mapa[i][7].getOcupado() == 1 && mapa[i][7].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor() == 1) {
-                                    mapa[i][7].setPeca(rainha1);
-                                }
-                            }
-                        }
+
+                        promocao();
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         contmov=0;
 	                    break;
@@ -480,6 +463,54 @@ public class Tabuleiro {
         System.out.printf("\n msm0= "+msmpxequecont0+" msm1= " +msmpxequecont1+"\n");
         if(msmpxequecont0>=10 || msmpxequecont1>=10){
             System.out.printf("\n EMPATE DO XEQUE PERPETUO YAHAHAHAHAHA \n");
+        }
+
+    }
+
+    public void promocao(){
+
+        for(i=0; i<8; i++){
+            if(mapa[i][0].getOcupado()==1 && mapa[i][0].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor()==0){
+                transin(i,0,1);
+            }else {
+                if (mapa[i][7].getOcupado() == 1 && mapa[i][7].getPeca() instanceof Peao && mapa[i][0].getPeca().getCor() == 1) {
+                    transin(i,7,1);
+                }
+            }
+        }
+    }
+
+    public void transin(int tx, int ty, int transinto){
+        ///0=torre, 1= cavalo, 2 = bispo, 3= rainha
+        switch (transinto){
+            case 0:
+                if(ty==0) {
+                    mapa[tx][0].setPeca(torre0);
+                }else{
+                    mapa[tx][7].setPeca(torre1);
+                }
+                break;
+            case 1:
+                if(ty==0) {
+                    mapa[tx][0].setPeca(cavalo0);
+                }else{
+                    mapa[tx][7].setPeca(cavalo1);
+                }
+                break;
+            case 2:
+                if(ty==0) {
+                    mapa[tx][0].setPeca(bispo0);
+                }else{
+                    mapa[tx][7].setPeca(bispo1);
+                }
+                break;
+            case 3:
+                if(ty==0) {
+                    mapa[tx][0].setPeca(rainha0);
+                }else{
+                    mapa[tx][7].setPeca(rainha1);
+                }
+                break;
         }
 
     }
