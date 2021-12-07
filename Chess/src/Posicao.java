@@ -18,4 +18,5 @@ public class Posicao {
     public int getOcupado() {
         return ocupado;
     }
+
 }

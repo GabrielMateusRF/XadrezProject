@@ -11,7 +11,7 @@ public class Instrucoes {
 }
 
 class MenuInstrucoes extends JFrame{
-    ImageIcon regrasImagens = new ImageIcon(getClass().getResource("regraaas.png"));
+    ImageIcon regrasImagens = new ImageIcon(getClass().getResource("Instrucoes.png"));
     JLabel regrasImagem = new JLabel(regrasImagens);
 
     public MenuInstrucoes() {
@@ -19,10 +19,15 @@ class MenuInstrucoes extends JFrame{
             public void mousePressed (MouseEvent a) {
                 int x = a.getX();
                 int y = a.getY();
-                System.out.println(x + "," + y);
-                if(x>167 && x<434 && y>515 && y<585){
-                    System.out.println("SAIR");
-                    java.lang.System.exit(0);
+                if(x>406 && x<561 && y>202 && y<275){
+                	//Jogo.
+
+                	Nomes nomes = new Nomes();
+                	nomes.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                	nomes.setSize(607,635);
+                	nomes.setVisible(true);
+                	
+                	dispose();
                 }
             }
         });
