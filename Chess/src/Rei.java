@@ -1,15 +1,24 @@
 public class Rei extends Peca{
 
-    public int movValido(Tabuleiro tabuleiro,int xdado, int ydado){
+    public int movValido(Posicao[][] mapa,int xdado, int ydado,int xin, int yin){
     	int zx, zy;
-    	zx = x-xdado;
-    	zy = y-ydado;
+    	zx = xin-xdado;
+    	zy = yin-ydado;
     	if(zx < 0) {
     		zx = zx*(-1);
     	}
     	if(zy < 0) {
     		zy = zy*(-1);
     	}
+
+		if(xin==4 && yin==0 && xdado==6 && ydado==0 && mapa[5][0].getOcupado()==0 && mapa[6][0].getOcupado()==0){
+			return 3;
+		}else{
+			if(xin==4 && yin==7 && xdado==6 && ydado==7 && mapa[5][7].getOcupado()==0 && mapa[6][7].getOcupado()==0){
+				return 3;
+			}
+		}
+
 
         ///Caso ele tenha clicado na mesma casa
         if(zx==0 && zy==0){
@@ -20,9 +29,9 @@ public class Rei extends Peca{
             return 0;
         }
         //Lugar ocupado
-        if(tabuleiro.mapa[xdado][ydado].getOcupado() == 1){
+        if(mapa[xdado][ydado].getOcupado() == 1){
         	//Ocupado pela mesma cor
-        	if(tabuleiro.mapa[xdado][ydado].getPeca().getCor()==cor) {
+        	if(mapa[xdado][ydado].getPeca().getCor()==cor) {
         		return 0;
         	}
         	//Ocupado por outra cor(comeu a peca).
