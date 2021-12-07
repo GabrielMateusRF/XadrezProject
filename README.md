@@ -1,6 +1,8 @@
 # XadrezProject
 Atividade do Curso Eng, Da computação da Puc-campinas. Trabalho Educativo. Feito Pelos estudantes: Gabriel Mateus Rosa Ferreira 20057642 Marcelo Jurandir Marçura 20086898
 
+
+Projeto finalizado 1.0
 Atividade de Xadrez pela Puccampinas
 Conforme pedido fora feito um jogo de Xadrez funcional.
 O xadrez segue as normas padrões.
@@ -12,3 +14,4 @@ Vale a pena notar que o resgistro da partida é realizado da maneira oficial de 
 O código da maneira oficial é o arquivo "log.txt" e o extra-oficial é "loginst.txt"
 
 Agradecemos a Oportunidade.
+
