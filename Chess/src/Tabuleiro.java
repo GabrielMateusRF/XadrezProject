@@ -36,6 +36,8 @@ public class Tabuleiro {
     String coluna;
     String coluna1;
     int linha;
+    int xina0, yina0, xouta0, youta0,xina1, yina1, xouta1, youta1, comeu0, comeu1;
+
 
     public XequeTeste testadordeXeque= new XequeTeste();
 
@@ -44,24 +46,31 @@ public class Tabuleiro {
         nome0 = N0;
     }
 
-    public void testeP(int turno) throws Exception{
-        File file = new File("teste.txt");
+    public void testeP() throws Exception{
+        File file = new File("logprev.txt");
+
+        int turn=(rodada+turno);
 
         BufferedReader brr = new BufferedReader(new FileReader(file));
 
-        String st;
+        String stt;
         // Consition holds true till
         // there is character in a string
         int aa;
-        st = brr.readLine();
-        for (aa=1; aa<turno; aa++){
-            st = brr.readLine();
+        stt = brr.readLine();
+        for (aa=1; aa<turn; aa++){
+            stt = brr.readLine();
         }
-        System.out.println(st);
-        String parte1 = st.substring(3,5);
-        String parte2 = st.substring(6,8);
-        System.out.println(parte1);
-        System.out.println(parte2);
+        System.out.println(stt);
+        String st=stt;
+
+        int xina =Integer.parseInt(stt.substring(0,1));
+        int yina =Integer.parseInt(stt.substring(2,3));
+        int xouta =Integer.parseInt(stt.substring(4,5));
+        int youta =Integer.parseInt(stt.substring(6,7));
+
+        mover(xina,yina,xouta,youta);
+
     }
 
 
@@ -94,6 +103,18 @@ public class Tabuleiro {
 
         try {
             File myObj = new File("log.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("Criar " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            File myObj = new File("loginst.txt");
             if (myObj.createNewFile()) {
                 System.out.println("Criar " + myObj.getName());
             } else {
@@ -368,10 +389,6 @@ public class Tabuleiro {
         contp=0;
 
 
-
-
-
-
         if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
 
             if (mapa[xin][yin].getPeca() instanceof Peao) {
@@ -505,11 +522,25 @@ public class Tabuleiro {
 
             if(mov>0){
                 try {
-                    testeP(rodada+turno);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    FileWriter escritoa = new FileWriter("loginst.txt", true);
+                    BufferedWriter bwa = new BufferedWriter(escritoa);
+                    PrintWriter escritora = new PrintWriter(bwa);
+                        if(turno==0){
+                            escritora.println(xin +" "+ yin + " "+  xout +" "+ yout);
+                            escritora.close();
+
+                        }else{
+                            escritora.println(xin +" "+ yin + " "+  xout +" "+ yout);
+                            escritora.close();
+                        }
+
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
             }
+
 
             switch (mov){
                 case 0:
@@ -1251,6 +1282,11 @@ public class Tabuleiro {
         }
 
     }
+
+
+
+
+
 
 
 
