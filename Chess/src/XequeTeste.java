@@ -358,16 +358,7 @@ public class XequeTeste {
                                 } else {
                                     if (mapa[i2][j2].getPeca() instanceof Torre) {
                                         System.out.printf("\n K2 \n");
-                                        if (mapa[i][j].getPeca() instanceof Rei) {
-                                            if (mapa[i][j].getPeca().getCor() == 0) {
-                                                System.out.printf("\n REI BRANCO\n");
-                                            }
-                                        }
-                                        if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                            if (mapa[i2][j2].getPeca().getCor() == 1) {
-                                                System.out.printf("\n TORRE PRETA\n");
-                                            }
-                                        }
+
                                         val = ((Torre) mapa[i2][j2].getPeca()).movValido(mapa,i4, j4, i2, j2);
                                         System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                     } else {

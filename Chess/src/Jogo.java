@@ -350,7 +350,6 @@ public class Jogo extends JFrame{
                     	if (tabu.mapa[xi][yi].getOcupado() == 1) {
 	                    	if(tabu.mapa[xi][yi].getPeca().getCor() == tabu.turno) {
 		                    	if (tabu.mapa[xi][yi].getPeca() instanceof Peao) {
-		        	                System.out.printf("\n P \n");
 		        	                mov=((Peao) tabu.mapa[xi][yi].getPeca()).movValido(tabu.mapa, i, j, xi, yi);
 		        	            } else {
 		        	                if (tabu.mapa[xi][yi].getPeca() instanceof Torre) {
