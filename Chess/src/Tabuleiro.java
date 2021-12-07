@@ -46,7 +46,7 @@ public class Tabuleiro {
         nome0 = N0;
     }
 
-    public void testeP() throws Exception{
+    public void Simulacao() throws Exception{
         File file = new File("logprev.txt");
 
         int turn=(rodada+turno);

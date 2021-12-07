@@ -4,4 +4,9 @@
 4. b3 d5
 5. Bb2 Qc7
 6. dxc5 Qh2
-1. f41. e41. f41. g4
+1. f41. e41. f41. g41. g4 g5
+2. Nf31. h4 c5
+1. h4 c5
+1. g4 Nf6
+2. Nf3 Nd5
+1. h4 c5
