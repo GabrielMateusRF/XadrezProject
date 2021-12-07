@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -43,6 +44,27 @@ public class Tabuleiro {
         nome0 = N0;
     }
 
+    public void testeP(int turno) throws Exception{
+        File file = new File("teste.txt");
+
+        BufferedReader brr = new BufferedReader(new FileReader(file));
+
+        String st;
+        // Consition holds true till
+        // there is character in a string
+        int aa;
+        st = brr.readLine();
+        for (aa=1; aa<turno; aa++){
+            st = brr.readLine();
+        }
+        System.out.println(st);
+        String parte1 = st.substring(3,5);
+        String parte2 = st.substring(6,8);
+        System.out.println(parte1);
+        System.out.println(parte2);
+    }
+
+
     public void reset(){
         ///Reset turno
         turno=0;
@@ -81,6 +103,7 @@ public class Tabuleiro {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+
 
 
         for(i=0; i<8;i++){
@@ -352,7 +375,6 @@ public class Tabuleiro {
         if(mapa[xin][yin].getOcupado()==1 && mapa[xin][yin].getPeca().getCor()==turno){
 
             if (mapa[xin][yin].getPeca() instanceof Peao) {
-                System.out.printf("\n P \n");
                 mov=((Peao) mapa[xin][yin].getPeca()).movValido(mapa, xout, yout, xin, yin);
             } else {
                 if (mapa[xin][yin].getPeca() instanceof Torre) {
@@ -479,6 +501,14 @@ public class Tabuleiro {
                 case 7:
                     linha=1;
                     break;
+            }
+
+            if(mov>0){
+                try {
+                    testeP(rodada+turno);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             switch (mov){
@@ -1222,5 +1252,8 @@ public class Tabuleiro {
 
     }
 
+
+
 }
+
 

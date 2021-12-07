@@ -37,50 +37,27 @@ public class XequeTeste {
         } else {
             inimigo = 0;
         }
-        ;
         ///xequecheck
         ///Caso um movimento que tu fizer te coloca em xeque;
         for (i = 0; i < 8; i++) {
             for (j=0; j<8; j++){
             if (mapa[i][j].getPeca() instanceof Rei && mapa[i][j].getOcupado() == 1 && mapa[i][j].getPeca().getCor() == turno) {
-                System.out.printf("\n i: " + i + " j: " + j + "\n");
                 for (i2 = 0; i2 < 8; i2++) {
                     for (j2 = 0; j2 < 8; j2++) {
                         if (mapa[i2][j2].getOcupado() == 1 && mapa[i2][j2].getPeca().getCor() == inimigo) {
-                            System.out.printf("\n i2: " + i2 + " j2: " + j2);
                             if (mapa[i2][j2].getPeca() instanceof Peao) {
-                                System.out.printf("\n P \n");
-                                System.out.printf("\n K1 \n");
                                 val = ((Peao) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                             } else {
                                 if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                    System.out.printf("\n K2 \n");
-                                    if (mapa[i][j].getPeca() instanceof Rei) {
-                                        if (mapa[i][j].getPeca().getCor() == 0) {
-                                            System.out.printf("\n REI BRANCO\n");
-                                        }
-                                    }
-                                    if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                        if (mapa[i2][j2].getPeca().getCor() == 1) {
-                                            System.out.printf("\n TORRE PRETA\n");
-                                        }
-                                    }
                                     val = ((Torre) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                    System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                 } else {
                                     if (mapa[i2][j2].getPeca() instanceof Cavalo) {
-                                        System.out.printf("\n K3 \n");
                                         val = ((Cavalo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                        System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                     } else {
                                         if (mapa[i2][j2].getPeca() instanceof Bispo) {
-                                            System.out.printf("\n K4 \n");
                                             val = ((Bispo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                            System.out.printf("\n" + val + " Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                         } else {
                                             if (mapa[i2][j2].getPeca() instanceof Rainha) {
-                                                System.out.printf("\n K5 \n");
                                                 val = ((Rainha) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
                                             } else {
                                                 if (mapa[i2][j2].getPeca() instanceof Rei) {
@@ -151,44 +128,24 @@ public class XequeTeste {
         for (i = 0; i < 8; i++) {
             for (j=0; j<8; j++){
                 if (mapa[i][j].getPeca() instanceof Rei && mapa[i][j].getOcupado() == 1 && mapa[i][j].getPeca().getCor() == inimigo) {
-                    System.out.printf("\n i: " + i + " j: " + j + "\n");
                     for (i2 = 0; i2 < 8; i2++) {
                         for (j2 = 0; j2 < 8; j2++) {
                             if (mapa[i2][j2].getOcupado() == 1 && mapa[i2][j2].getPeca().getCor() == turno) {
-                                System.out.printf("\n i2: " + i2 + " j2: " + j2);
                                 if (mapa[i2][j2].getPeca() instanceof Peao) {
-                                    System.out.printf("\n P \n");
-                                    System.out.printf("\n K1 \n");
                                     val = ((Peao) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                    System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                 } else {
                                     if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                        System.out.printf("\n K2 \n");
-                                        if (mapa[i][j].getPeca() instanceof Rei) {
-                                            if (mapa[i][j].getPeca().getCor() == 0) {
-                                                System.out.printf("\n REI BRANCO\n");
-                                            }
-                                        }
-                                        if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                            if (mapa[i2][j2].getPeca().getCor() == 1) {
-                                                System.out.printf("\n TORRE PRETA\n");
-                                            }
-                                        }
                                         val = ((Torre) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                        System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                     } else {
                                         if (mapa[i2][j2].getPeca() instanceof Cavalo) {
                                             System.out.printf("\n K3 \n");
                                             val = ((Cavalo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                            System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
+
                                         } else {
                                             if (mapa[i2][j2].getPeca() instanceof Bispo) {
-                                                System.out.printf("\n K4 \n");
                                                 val = ((Bispo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
-                                                System.out.printf("\n" + val + " Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                             } else {
                                                 if (mapa[i2][j2].getPeca() instanceof Rainha) {
-                                                    System.out.printf("\n K5 \n");
                                                     val = ((Rainha) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
                                                 } else {
                                                     if (mapa[i2][j2].getPeca() instanceof Rei) {
@@ -233,7 +190,6 @@ public class XequeTeste {
             for (j4=0; j4<8; j4++){
                 ///achar rei inimigo
                 if (mapa[i4][j4].getPeca() instanceof Rei && mapa[i4][j4].getOcupado() == 1 && mapa[i4][j4].getPeca().getCor() == inimigo) {
-                    System.out.printf("\n i: " + i4 + " j: " + j4 + "\n");
                         ///i e j tem posição do rei
                     for(i3=0; i3<8; i3++) {
                         switch (i3){
@@ -271,7 +227,6 @@ public class XequeTeste {
                                 break;
 
                         }
-                        System.out.printf("\n O i que tu procura 9: " +i3+" \n");
                        ///Evitar verificações desnecessárias
                         if((imate<0)||(imate>7)||(jmate<0)||(jmate>7)){
                             val2=0;
@@ -349,31 +304,19 @@ public class XequeTeste {
                     for (i2 = 0; i2 < 8; i2++) {
                         for (j2 = 0; j2 < 8; j2++) {
                             if (mapa[i2][j2].getOcupado() == 1 && mapa[i2][j2].getPeca().getCor() == turno) {
-                                System.out.printf("\n i2: " + i2 + " j2: " + j2);
                                 if (mapa[i2][j2].getPeca() instanceof Peao) {
-                                    System.out.printf("\n P \n");
-                                    System.out.printf("\n K1 \n");
                                     val = ((Peao) mapa[i2][j2].getPeca()).movValido(mapa, i4, j4, i2, j2);
-                                    System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                 } else {
                                     if (mapa[i2][j2].getPeca() instanceof Torre) {
-                                        System.out.printf("\n K2 \n");
-
                                         val = ((Torre) mapa[i2][j2].getPeca()).movValido(mapa,i4, j4, i2, j2);
-                                        System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                     } else {
                                         if (mapa[i2][j2].getPeca() instanceof Cavalo) {
-                                            System.out.printf("\n K3 \n");
                                             val = ((Cavalo) mapa[i2][j2].getPeca()).movValido(mapa,i4, j4, i2, j2);
-                                            System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                         } else {
                                             if (mapa[i2][j2].getPeca() instanceof Bispo) {
-                                                System.out.printf("\n K4 \n");
                                                 val = ((Bispo) mapa[i2][j2].getPeca()).movValido(mapa, i4, j4, i2, j2);
-                                                System.out.printf("\n" + val + " Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                             } else {
                                                 if (mapa[i2][j2].getPeca() instanceof Rainha) {
-                                                    System.out.printf("\n K5 \n");
                                                     val = ((Rainha) mapa[i2][j2].getPeca()).movValido(mapa, i4, j4, i2, j2);
                                                 } else {
                                                     if (mapa[i2][j2].getPeca() instanceof Rei) {
@@ -389,33 +332,24 @@ public class XequeTeste {
                                     for (i = 0; i < 8; i++) {
                                         for (j = 0; j < 8; j++) {
                                             if (mapa[i][j].getOcupado() == 1 && mapa[i][j].getPeca().getCor() != turno) {
-                                                System.out.printf("\n i2: " + i2 + " j2: " + j2);
                                                 if (mapa[i][j].getPeca() instanceof Peao) {
-                                                    System.out.printf("\n P \n");
-                                                    System.out.printf("\n K1 \n");
                                                     val = ((Peao) mapa[i][j].getPeca()).movValido(mapa, i2, j2, i, j);
 
                                                 } else {
                                                     if (mapa[i][j].getPeca() instanceof Torre) {
-                                                        System.out.printf("\n K2 \n");
-
                                                         val = ((Torre) mapa[i][j].getPeca()).movValido(mapa, i2, j2, i, j);
-                                                        System.out.printf("\n" + val + "Cor: " + mapa[i2][j2].getPeca().getCor() + "\n");
                                                     } else {
                                                         if (mapa[i][j].getPeca() instanceof Cavalo) {
                                                             val = ((Cavalo) mapa[i][j].getPeca()).movValido(mapa,i2, j2, i, j);
                                                         } else {
                                                             if (mapa[i][j].getPeca() instanceof Bispo) {
-                                                                System.out.printf("\n K4 \n");
                                                                 val = ((Bispo) mapa[i][j].getPeca()).movValido(mapa, i2, j2, i, j);
 
                                                             } else {
                                                                 if (mapa[i][j].getPeca() instanceof Rainha) {
-                                                                    System.out.printf("\n K5 \n");
                                                                     val = ((Rainha) mapa[i][j].getPeca()).movValido(mapa, i2, j2, i, j);
                                                                 } else {
                                                                     if (mapa[i][j].getPeca() instanceof Rei) {
-                                                                        System.out.printf("\n K5 \n");
                                                                         val = ((Rei) mapa[i][j].getPeca()).movValido(mapa, i2, j2, i, j);
                                                                     }
                                                                 }
