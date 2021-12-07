@@ -19,7 +19,6 @@ class MenuInstrucoes extends JFrame{
             public void mousePressed (MouseEvent a) {
                 int x = a.getX();
                 int y = a.getY();
-                System.out.println(x + "," + y);
                 if(x>406 && x<561 && y>202 && y<275){
                 	//Jogo.
 

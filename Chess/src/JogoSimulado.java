@@ -59,7 +59,7 @@ public class JogoSimulado extends JFrame{
 	JLabel empate = new JLabel("solicitou um empate.");
 	JLabel vitoria = new JLabel("O vencedor é");
 	JLabel pecas = new JLabel("Escolha sua peça de promoção:");
-	String[] opcoes = new String[]{"OK", "Cancelar"};
+	String[] opcoes = new String[]{"OK"};
 	String[] opcoesEmpate = new String[]{"Aceitar", "Recusar"};
 	String[] opcoesPecas = new String[]{"Torre", "Cavalo", "Bispo", "Rainha"};
 	
@@ -70,7 +70,6 @@ public class JogoSimulado extends JFrame{
     	String nome1 = "Brancas", nome0 = "Pretas";
     	//MONTAGEM DO TABULEIRO ---------------------------------------------------------------------------------------
     	tabu.reset();
-        tabu.tabuleiroTest();
         
         //Cor preta.
     	JLabel N1 = new JLabel(nome1);
@@ -249,7 +248,6 @@ public class JogoSimulado extends JFrame{
                 y = a.getY();
                 
                 repaint();
-                System.out.println(x + "," + y);
                 	
                 	//Final da simulacao.
                 if(x>11 && y>237 && x<46 && y<511){
@@ -556,7 +554,7 @@ public class JogoSimulado extends JFrame{
                 	Aviso.add(xeque);
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 	tabu.xequet = 0;
                 	Aviso.remove(xeque);
                 //Verifica xeque mate e imprime.
@@ -564,7 +562,7 @@ public class JogoSimulado extends JFrame{
                 	Aviso.add(xequeMate);
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 	Aviso.remove(xequeMate);
                 	
                 	Aviso.add(vitoria);
@@ -578,7 +576,7 @@ public class JogoSimulado extends JFrame{
                 	
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 }
                 
     

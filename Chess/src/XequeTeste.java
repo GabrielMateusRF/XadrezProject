@@ -69,7 +69,7 @@ public class XequeTeste {
                                 }
                             }
                             if (val > 0) {
-                                System.out.println("\n Tu se colocou em xeque  :v");
+                                ///secolocou em xeque
                                 switch (mov) {
                                     case 1:
                                         mapa[xin][yin].setPeca(mapa[xout][yout].getPeca());
@@ -138,7 +138,6 @@ public class XequeTeste {
                                         val = ((Torre) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
                                     } else {
                                         if (mapa[i2][j2].getPeca() instanceof Cavalo) {
-                                            System.out.printf("\n K3 \n");
                                             val = ((Cavalo) mapa[i2][j2].getPeca()).movValido(mapa, i, j, i2, j2);
 
                                         } else {
@@ -157,7 +156,7 @@ public class XequeTeste {
                                     }
                                 }
                                 if (val > 0) {
-                                    System.out.println("\n XEQUE!  !w!");
+                                    ///Xeque
 
                                     return 1;
                                 }
@@ -376,7 +375,7 @@ public class XequeTeste {
 
 
 
-                    System.out.printf("\n MAATEEEEEE \n");
+                    ///Mate
                     return 1;
                 }
             }

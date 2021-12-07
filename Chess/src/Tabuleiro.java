@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -32,12 +31,11 @@ public class Tabuleiro {
     //public Registrador dadosreg = new Registrador();
     int msmpxequecont0;
     int msmpxequecont1;
-    public String nome0 = new String();
-    public String nome1 = new String();
+    public String nome0;
+    public String nome1;
     String coluna;
     String coluna1;
     int linha;
-    int xina0, yina0, xouta0, youta0,xina1, yina1, xouta1, youta1, comeu0, comeu1;
 
 
     public XequeTeste testadordeXeque= new XequeTeste();
@@ -48,7 +46,7 @@ public class Tabuleiro {
     }
 
     public void Simulacao() throws Exception{
-        File file = new File("logprev.txt");
+        File file = new File("loginst.txt");
 
         BufferedReader brr = new BufferedReader(new FileReader(file));
 
@@ -60,8 +58,6 @@ public class Tabuleiro {
         for (aa=1; aa<contagem; aa++){
             stt = brr.readLine();
         }
-        System.out.println(stt);
-        String st=stt;
 
         int xina =Integer.parseInt(stt.substring(0,1));
         int yina =Integer.parseInt(stt.substring(2,3));
@@ -74,6 +70,27 @@ public class Tabuleiro {
     }
 
 
+    public void resetSim(){
+        contagem=0;
+        try {
+            PrintWriter mii = new PrintWriter("log.txt");
+            mii.print("");
+            mii.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            PrintWriter mii2 = new PrintWriter("loginst.txt");
+            mii2.print("");
+            mii2.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void reset(){
         ///Reset turno
         turno=0;
@@ -83,7 +100,6 @@ public class Tabuleiro {
         rodada=1;
         msmpxequecont0=0;
         msmpxequecont1=0;
-        contagem=0;
         ///Pecas ganhando cor
         peao0.setPeca(0);
         peao1.setPeca(1);
@@ -100,31 +116,6 @@ public class Tabuleiro {
         ///dadosreg.criarRegistro();
         ///
 
-
-
-        try {
-            File myObj = new File("log.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("Criar " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        try {
-            File myObj = new File("loginst.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("Criar " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
 
 
 
@@ -145,8 +136,6 @@ public class Tabuleiro {
                                 }else{///Torre branca em 07
                                     if (j==7){
                                         mapa[i][j].setPeca(torre0);
-                                    }else{
-
                                     }
                                 }
                             }
@@ -166,8 +155,6 @@ public class Tabuleiro {
                                 }else{
                                     if (j==7){
                                         mapa[i][j].setPeca(cavalo0);
-                                    }else{
-
                                     }
                                 }
                             }
@@ -188,8 +175,6 @@ public class Tabuleiro {
 
                                     if (j==7){
                                         mapa[i][j].setPeca(bispo0);
-                                    }else{
-
                                     }
 
                                 }
@@ -209,10 +194,8 @@ public class Tabuleiro {
 
                                 }else{
 
-                                    if (j==7){
+                                    if (j==7) {
                                         mapa[i][j].setPeca(rainha0);
-                                    }else{
-
                                     }
 
                                     break;
@@ -236,8 +219,6 @@ public class Tabuleiro {
 
                                     if (j==7){
                                         mapa[i][j].setPeca(rei0);
-                                    }else{
-
                                     }
 
                                 }
@@ -259,8 +240,6 @@ public class Tabuleiro {
 
                                     if (j==7){
                                         mapa[i][j].setPeca(bispo0);
-                                    }else{
-
                                     }
 
                                 }
@@ -281,8 +260,6 @@ public class Tabuleiro {
                                 }else{
                                     if (j==7){
                                         mapa[i][j].setPeca(cavalo0);
-                                    }else{
-
                                     }
                                 }
                             }
@@ -301,8 +278,6 @@ public class Tabuleiro {
                                 }else{///Torre branca em 07
                                     if (j==7){
                                         mapa[i][j].setPeca(torre0);
-                                    }else{
-
                                     }
                                 }
                             }
@@ -313,78 +288,8 @@ public class Tabuleiro {
         }
     }
 
-    ///Tabuleiro
-    public void tabuleiroTest() {
-
-        System.out.println(nome0);
-
-        for (j = 0; j < 8; j++) {
-            for (i = 0; i < 8; i++) {
-                if (mapa[i][j].getOcupado() == 1) {
-                    contp++;
-                    if (mapa[i][j].getPeca() instanceof Peao) {
-                        if(mapa[i][j].getPeca().getCor()==0){
-                            System.out.printf("|P0|");
-                        }else {
-                            System.out.printf("|P1|");
-                        }
-
-                    } else {
-                        if (mapa[i][j].getPeca() instanceof Torre) {
-                            if(mapa[i][j].getPeca().getCor()==0){
-                                System.out.printf("|T0|");
-                            }else {
-                                System.out.printf("|T1|");
-                            }
-
-                        } else {
-                            if (mapa[i][j].getPeca() instanceof Cavalo) {
-                                if(mapa[i][j].getPeca().getCor()==0){
-                                    System.out.printf("|C0|");
-                                }else {
-                                    System.out.printf("|C1|");
-                                }
-
-                            } else {
-                                if (mapa[i][j].getPeca() instanceof Bispo) {
-                                    if(mapa[i][j].getPeca().getCor()==0){
-                                        System.out.printf("|B0|");
-                                    }else {
-                                        System.out.printf("|B1|");
-                                    }
-
-                                } else {
-                                    if (mapa[i][j].getPeca() instanceof Rainha) {
-                                        if(mapa[i][j].getPeca().getCor()==0){
-                                            System.out.printf("|r0|");
-                                        }else {
-                                            System.out.printf("|r1|");
-                                        }
-
-                                    } else {
-                                        if(mapa[i][j].getPeca() instanceof Rei){
-                                            if (mapa[i][j].getPeca().getCor() == 0) {
-                                                System.out.printf("|R0|");
-                                            } else {
-                                                System.out.printf("|R1|");
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    System.out.printf("|  |");
-                }
-            }
-            System.out.printf("\n");
-        }
-
-    }
 
     public void mover(int xi, int yi, int xo, int yo){
-        Scanner input = new Scanner(System.in);
         int xin=xi, yin=yi, xout=xo, yout=yo;
         int mov=0;
         contp=0;
@@ -413,7 +318,6 @@ public class Tabuleiro {
                     }
                 }
             }
-            System.out.printf("\n" + mov + "\n");
 
             ///testar cheque proprio, dps vamo ter que mudar e não enviar direto pro mov;
 
@@ -440,6 +344,8 @@ public class Tabuleiro {
 
             xequet=0;
 
+
+            ///A partir daqui há elementos de imprimir o arquivo em norma de Xadrez, encontrado com o nome "log.txt"
             switch (xout){
                 case 0:
                     coluna="a";
@@ -561,7 +467,6 @@ public class Tabuleiro {
                         //promocao();
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         if(xequet==1){
-                            System.out.printf("\n XEQUE HOMEM ARANHA MUHAHAHAHAAH\n");
                             matet=testadordeXeque.testeMate(mapa, turno);
                         }
 
@@ -843,7 +748,6 @@ public class Tabuleiro {
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         contmov=0;
                         if(xequet==1){
-                            System.out.printf("\n XEQUE HOMEM ARANHA MUHAHAHAHAAH\n");
                             matet=testadordeXeque.testeMate(mapa, turno);
                         }
                         if(mapa[xin][yin].getPeca() instanceof Peao){
@@ -1121,7 +1025,6 @@ public class Tabuleiro {
 
                         xequet=testadordeXeque.testeXeque(mapa, turno);
                         if(xequet==1){
-                            System.out.printf("\n XEQUE HOMEM ARANHA MUHAHAHAHAAH\n");
                             matet=testadordeXeque.testeMate(mapa, turno);
                         }
 
@@ -1171,7 +1074,6 @@ public class Tabuleiro {
 
 
                 if(matet==1){
-                    System.out.printf("\n GAME OVER, WINNAR IS...: "+ turno);
                 }
 	            if(mov>0) {
 
@@ -1183,7 +1085,7 @@ public class Tabuleiro {
 	            	}
 	            }
         }else{
-            System.out.println("\n Peca invalida");
+
         }
             
             ///Checar se só tem os dois reis e + uma peça na regra de Falta de peças
@@ -1196,16 +1098,12 @@ public class Tabuleiro {
             }
             System.out.printf("\n");
         }
-        if(contp==3){
-            System.out.printf("\n EMPATE DE 2 REIS \n");
-        }
+
         /*A partida pode terminar no empate, se ambos os
         jogadores completarem 50 lances consecutivos sem
         a movimentação de qualquer peão e sem a captura
         de qualquer peça.*/
-        if(contmov>50){
-            System.out.printf("\n EMPATE DE 50 MOVS \n");
-        }
+
         /*Regra do xeque perpétuo, é colocar indefinidas vezes o rei do oponente
         * em xeque, sem propósito de mudanças, isto será registrado colocando o rei em xeque
         * movendo a mesma peça que o colocou 10 vezes*/
@@ -1240,9 +1138,8 @@ public class Tabuleiro {
                 msmpxequecont1=0;
             }
         }
-        System.out.printf("\n msm0= "+msmpxequecont0+" msm1= " +msmpxequecont1+"\n");
+
         if(msmpxequecont0>=10 || msmpxequecont1>=10){
-            System.out.printf("\n EMPATE DO XEQUE PERPETUO YAHAHAHAHAHA \n");
         }
 
     }

@@ -59,7 +59,7 @@ public class Jogo extends JFrame{
 	JLabel empate = new JLabel("solicitou um empate.");
 	JLabel vitoria = new JLabel("O vencedor é");
 	JLabel pecas = new JLabel("Escolha sua peça de promoção:");
-	String[] opcoes = new String[]{"OK", "Cancelar"};
+	String[] opcoes = new String[]{"OK"};
 	String[] opcoesEmpate = new String[]{"Aceitar", "Recusar"};
 	String[] opcoesPecas = new String[]{"Torre", "Cavalo", "Bispo", "Rainha"};
 	
@@ -69,7 +69,7 @@ public class Jogo extends JFrame{
     	
     	//MONTAGEM DO TABULEIRO ---------------------------------------------------------------------------------------
     	tabu.reset();
-        tabu.tabuleiroTest();
+		tabu.resetSim();
         
         //Cor preta.
     	JLabel N1 = new JLabel(nome1);
@@ -248,7 +248,6 @@ public class Jogo extends JFrame{
                 y = a.getY();
                 
                 repaint();
-                System.out.println(x + "," + y);
 
                 if(x>54 && y>80 && x<554 && y<580) {
                 	if(scan == 0) {
@@ -274,9 +273,7 @@ public class Jogo extends JFrame{
                 	
                 	//Movimento finalizado.
                     if(scan == 0) {
-                        tabu.tabuleiroTest();
                         tabu.mover(xi, yi, xo, yo);
-                        tabu.tabuleiroTest();
                         
                         //Quadrado de selecao.
                         x = (int) (44+(xo*62.5));
@@ -632,7 +629,7 @@ public class Jogo extends JFrame{
                 	Aviso.add(xeque);
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 	tabu.xequet = 0;
                 	Aviso.remove(xeque);
                 //Verifica xeque mate e imprime.
@@ -640,7 +637,7 @@ public class Jogo extends JFrame{
                 	Aviso.add(xequeMate);
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 	Aviso.remove(xequeMate);
                 	
                 	Aviso.add(vitoria);
@@ -654,7 +651,7 @@ public class Jogo extends JFrame{
                 	
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
-                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 	
                 	
                 	

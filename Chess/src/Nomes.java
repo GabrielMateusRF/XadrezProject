@@ -32,7 +32,6 @@ public class Nomes extends JFrame{
             public void mousePressed (MouseEvent a) {//Checa clique do mouse.
                 int x = a.getX();
                 int y = a.getY();
-                System.out.println(x + "," + y);
                 if(x>473 && x<591 && y>585 && y<622){
                 	//Jogo.
                 	Jogo jogo = new Jogo(String.valueOf(nome0.getText()),String.valueOf(nome1.getText()));

@@ -41,7 +41,6 @@ class MenuClick extends JFrame{
             public void mousePressed (MouseEvent a) {//Checa clique do mouse.
                 int x = a.getX();
                 int y = a.getY();
-                System.out.println(x + "," + y);
                 if(x>207 && x<402 && y>225 && y<289){
                 	//Jogo.
 
