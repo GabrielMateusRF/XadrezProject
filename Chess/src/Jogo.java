@@ -313,7 +313,13 @@ public class Jogo extends JFrame{
                 	Aviso.remove(empate);
                 	
                 	if(escolha == 0) {
-                		dispose();
+                		MenuClick menuClick = new MenuClick();
+                    	
+                    	menuClick.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    	menuClick.setSize(600,600);
+                    	menuClick.setVisible(true);
+                    	
+                    	dispose();
                 	}
                 	//Desistir.
                 }else if(x>559 && y>205 && x<595 && y<511){
@@ -329,6 +335,14 @@ public class Jogo extends JFrame{
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
                 	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	
+
+
+                	MenuClick menuClick = new MenuClick();
+                	
+                	menuClick.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                	menuClick.setSize(600,600);
+                	menuClick.setVisible(true);
                 	
                 	dispose();
                 }
@@ -641,6 +655,16 @@ public class Jogo extends JFrame{
                 	Aviso.setPreferredSize(new Dimension(200,100));
                 	
                 	JOptionPane.showOptionDialog(null, Aviso, "Aviso", JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[1]);
+                	
+                	
+                	
+                	MenuClick menuClick = new MenuClick();
+                	
+                	menuClick.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                	menuClick.setSize(600,600);
+                	menuClick.setVisible(true);
+                	
+                	dispose();
                 }
                 
     

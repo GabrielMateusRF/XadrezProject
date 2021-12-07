@@ -24,6 +24,7 @@ public class Tabuleiro {
     int contp;
     int contmov;
     int rodada;
+    int contagem;
 
 
     public Posicao mesmapecaxeque0 = new Posicao();
@@ -49,8 +50,6 @@ public class Tabuleiro {
     public void Simulacao() throws Exception{
         File file = new File("logprev.txt");
 
-        int turn=(rodada+turno);
-
         BufferedReader brr = new BufferedReader(new FileReader(file));
 
         String stt;
@@ -58,7 +57,7 @@ public class Tabuleiro {
         // there is character in a string
         int aa;
         stt = brr.readLine();
-        for (aa=1; aa<turn; aa++){
+        for (aa=1; aa<contagem; aa++){
             stt = brr.readLine();
         }
         System.out.println(stt);
@@ -68,7 +67,8 @@ public class Tabuleiro {
         int yina =Integer.parseInt(stt.substring(2,3));
         int xouta =Integer.parseInt(stt.substring(4,5));
         int youta =Integer.parseInt(stt.substring(6,7));
-
+        
+        contagem++;
         mover(xina,yina,xouta,youta);
 
     }
@@ -83,6 +83,7 @@ public class Tabuleiro {
         rodada=1;
         msmpxequecont0=0;
         msmpxequecont1=0;
+        contagem=0;
         ///Pecas ganhando cor
         peao0.setPeca(0);
         peao1.setPeca(1);
